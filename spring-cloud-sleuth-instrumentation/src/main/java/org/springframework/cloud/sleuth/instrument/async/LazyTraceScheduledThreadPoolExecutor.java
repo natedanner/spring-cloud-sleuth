@@ -337,10 +337,6 @@ class LazyTraceScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
 	}
 
 	@Override
-	public void finalize() {
-	}
-
-	@Override
 	public void setThreadFactory(ThreadFactory threadFactory) {
 		this.delegate.setThreadFactory(threadFactory);
 	}

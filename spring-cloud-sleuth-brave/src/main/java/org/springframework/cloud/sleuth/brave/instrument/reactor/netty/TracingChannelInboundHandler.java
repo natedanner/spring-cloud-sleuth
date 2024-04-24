@@ -51,7 +51,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelRegistered(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelRegistered())) {
+		if (instrumentOperation(ctx, ctx::fireChannelRegistered)) {
 			return;
 		}
 
@@ -60,7 +60,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelUnregistered(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelUnregistered())) {
+		if (instrumentOperation(ctx, ctx::fireChannelUnregistered)) {
 			return;
 		}
 
@@ -69,7 +69,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelActive())) {
+		if (instrumentOperation(ctx, ctx::fireChannelActive)) {
 			return;
 		}
 
@@ -78,7 +78,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelInactive())) {
+		if (instrumentOperation(ctx, ctx::fireChannelInactive)) {
 			return;
 		}
 
@@ -96,7 +96,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelReadComplete())) {
+		if (instrumentOperation(ctx, ctx::fireChannelReadComplete)) {
 			return;
 		}
 
@@ -114,7 +114,7 @@ public class TracingChannelInboundHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelWritabilityChanged(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.fireChannelWritabilityChanged())) {
+		if (instrumentOperation(ctx, ctx::fireChannelWritabilityChanged)) {
 			return;
 		}
 

@@ -62,7 +62,7 @@ public class HelloWorldRestController {
 
 		LOG.info(" Response Message " + body);
 
-		return new ResponseEntity<String>(body.toString(), HttpStatus.OK);
+		return new ResponseEntity<>(body.toString(), HttpStatus.OK);
 	}
 
 }

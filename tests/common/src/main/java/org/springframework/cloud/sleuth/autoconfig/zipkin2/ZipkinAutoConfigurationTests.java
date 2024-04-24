@@ -93,8 +93,8 @@ public abstract class ZipkinAutoConfigurationTests {
 	}
 
 	@Test
-	void should_apply_micrometer_reporter_metrics_when_meter_registry_bean_present() {
-		this.contextRunner.withUserConfiguration(WithMeterRegistry.class).run((context) -> {
+	void shouldApplyMicrometerReporterMetricsWhenMeterRegistryBeanPresent() {
+		this.contextRunner.withUserConfiguration(WithMeterRegistry.class).run(context -> {
 			ReporterMetrics bean = context.getBean(ReporterMetrics.class);
 
 			BDDAssertions.then(bean).isInstanceOf(MicrometerReporterMetrics.class);
@@ -102,8 +102,8 @@ public abstract class ZipkinAutoConfigurationTests {
 	}
 
 	@Test
-	void should_apply_in_memory_metrics_when_meter_registry_bean_missing() {
-		this.contextRunner.run((context) -> {
+	void shouldApplyInMemoryMetricsWhenMeterRegistryBeanMissing() {
+		this.contextRunner.run(context -> {
 			ReporterMetrics bean = context.getBean(ReporterMetrics.class);
 
 			BDDAssertions.then(bean).isInstanceOf(InMemoryReporterMetrics.class);
@@ -111,8 +111,8 @@ public abstract class ZipkinAutoConfigurationTests {
 	}
 
 	@Test
-	void should_apply_in_memory_metrics_when_meter_registry_class_missing() {
-		this.contextRunner.withClassLoader(new FilteredClassLoader(MeterRegistry.class)).run((context) -> {
+	void shouldApplyInMemoryMetricsWhenMeterRegistryClassMissing() {
+		this.contextRunner.withClassLoader(new FilteredClassLoader(MeterRegistry.class)).run(context -> {
 			ReporterMetrics bean = context.getBean(ReporterMetrics.class);
 
 			BDDAssertions.then(bean).isInstanceOf(InMemoryReporterMetrics.class);
@@ -278,7 +278,7 @@ public abstract class ZipkinAutoConfigurationTests {
 
 		static class OtherSender extends Sender {
 
-			private boolean spanSent = false;
+			private boolean spanSent;
 
 			boolean isSpanSent() {
 				return this.spanSent;
@@ -326,7 +326,7 @@ public abstract class ZipkinAutoConfigurationTests {
 
 		static class MySender extends Sender {
 
-			private boolean spanSent = false;
+			private boolean spanSent;
 
 			boolean isSpanSent() {
 				return this.spanSent;

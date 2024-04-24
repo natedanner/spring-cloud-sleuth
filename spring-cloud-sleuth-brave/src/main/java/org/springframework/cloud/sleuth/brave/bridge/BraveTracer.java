@@ -62,7 +62,7 @@ public class BraveTracer implements Tracer {
 		if (parent == null) {
 			return nextSpan();
 		}
-		brave.propagation.TraceContext context = (((BraveTraceContext) parent.context()).traceContext);
+		brave.propagation.TraceContext context = ((BraveTraceContext) parent.context()).traceContext;
 		if (context == null) {
 			return null;
 		}

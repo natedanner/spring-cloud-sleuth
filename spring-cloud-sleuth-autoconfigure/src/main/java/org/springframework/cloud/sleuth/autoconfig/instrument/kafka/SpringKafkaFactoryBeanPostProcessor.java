@@ -42,13 +42,13 @@ public class SpringKafkaFactoryBeanPostProcessor implements BeanPostProcessor {
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		if (bean instanceof ConsumerFactory) {
 			ConsumerFactory factory = (ConsumerFactory) bean;
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof SpringKafkaConsumerPostProcessor)) {
+			if (factory.getPostProcessors().stream().noneMatch(SpringKafkaConsumerPostProcessor.class::isInstance)) {
 				factory.addPostProcessor(new SpringKafkaConsumerPostProcessor(this.beanFactory));
 			}
 		}
 		else if (bean instanceof ProducerFactory) {
 			ProducerFactory factory = (ProducerFactory) bean;
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof SpringKafkaProducerPostProcessor)) {
+			if (factory.getPostProcessors().stream().noneMatch(SpringKafkaProducerPostProcessor.class::isInstance)) {
 				factory.addPostProcessor(new SpringKafkaProducerPostProcessor(this.beanFactory));
 			}
 		}

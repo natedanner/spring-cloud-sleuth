@@ -31,8 +31,7 @@ public class HelloWorldImpl {
 		LOG.info(" input message " + message);
 		Thread.currentThread().sleep(500);
 		LOG.info(" After the Sleep " + message);
-		String responseMessage = message + " Persist into DB ";
-		return responseMessage;
+		return message + " Persist into DB ";
 	}
 
 	public List<String> aggregate(List<String> requestMessage) {
@@ -43,7 +42,7 @@ public class HelloWorldImpl {
 
 	public List<String> splitMessage(String[] splitRequest) {
 		LOG.info(" Inside splitMessage " + splitRequest);
-		List<String> splitGBSResponse = new ArrayList<String>();
+		List<String> splitGBSResponse = new ArrayList<>();
 		splitGBSResponse = Arrays.asList(splitRequest);
 		return splitGBSResponse;
 	}

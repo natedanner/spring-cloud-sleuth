@@ -94,7 +94,7 @@ public abstract class ReactiveMongoDbIntegrationTests {
 		then(reportedSpans.stream().map(FinishedSpan::getTraceId).collect(Collectors.toSet()))
 				.as("There must be only 1 trace id").hasSize(1);
 		List<String> mongoSpanNames = reportedSpans.stream()
-				.filter(fs -> fs.getName().equals("insert user") || fs.getName().equals("find user"))
+				.filter(fs -> "insert user".equals(fs.getName()) || "find user".equals(fs.getName()))
 				.map(FinishedSpan::getName).collect(Collectors.toList());
 		then(mongoSpanNames).as("There must be first an insert then a find").containsExactly("insert user",
 				"find user");

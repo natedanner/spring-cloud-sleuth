@@ -132,7 +132,7 @@ public class TraceJdbcProperties {
 		 *
 		 * @see ProxyDataSourceBuilder#asJson()
 		 */
-		private boolean jsonFormat = false;
+		private boolean jsonFormat;
 
 		public boolean isEnabled() {
 			return this.enabled;
@@ -190,7 +190,7 @@ public class TraceJdbcProperties {
 			/**
 			 * Enable logging all queries to the log.
 			 */
-			private boolean enableLogging = false;
+			private boolean enableLogging;
 
 			/**
 			 * Name of query logger.
@@ -236,7 +236,7 @@ public class TraceJdbcProperties {
 			/**
 			 * Enable logging slow queries to the log.
 			 */
-			private boolean enableLogging = false;
+			private boolean enableLogging;
 
 			/**
 			 * Name of slow query logger.
@@ -331,7 +331,7 @@ public class TraceJdbcProperties {
 		/**
 		 * Enables logging JDBC events.
 		 */
-		private boolean enableLogging = false;
+		private boolean enableLogging;
 
 		/**
 		 * Enables multiline output.

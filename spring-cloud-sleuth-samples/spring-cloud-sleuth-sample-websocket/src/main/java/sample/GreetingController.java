@@ -41,7 +41,7 @@ public class GreetingController {
 
 class Greeting {
 
-	private String content;
+	private final String content;
 
 	Greeting(String content) {
 		this.content = content;

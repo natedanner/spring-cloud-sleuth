@@ -107,8 +107,8 @@ public class WebClientExceptionTests {
 
 	static Stream<Object> parametersForShouldCloseSpanUponException() {
 		return Stream.of(
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterfaceWithException.shouldFailToConnect(),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("https://exceptionservice/",
+				(ResponseEntityProvider) tests -> tests.testFeignInterfaceWithException.shouldFailToConnect(),
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("https://exceptionservice/",
 						Map.class));
 	}
 

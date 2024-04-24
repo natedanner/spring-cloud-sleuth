@@ -101,9 +101,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -128,9 +127,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -146,9 +144,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -164,9 +161,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -181,9 +177,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -251,9 +246,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -268,9 +262,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -286,9 +279,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -303,9 +295,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -321,9 +312,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -338,9 +328,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -356,9 +345,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -373,9 +361,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -390,9 +377,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -423,9 +409,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -440,9 +425,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -472,9 +456,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -489,9 +472,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -506,9 +488,8 @@ public abstract class TraceThreadPoolTaskSchedulerTests implements TestTracingAw
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	Runnable aRunnable(AtomicBoolean executed, Span currentSpan) {

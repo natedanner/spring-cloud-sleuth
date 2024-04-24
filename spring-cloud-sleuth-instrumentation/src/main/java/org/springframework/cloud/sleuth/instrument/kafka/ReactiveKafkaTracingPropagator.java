@@ -49,7 +49,7 @@ public class ReactiveKafkaTracingPropagator {
 	}
 
 	public <K, V, T extends ConsumerRecord<K, V>> Flux<T> propagateSpanContextToReactiveContext(Flux<T> publisher) {
-		return publisher.flatMap(consumerRecord -> Mono.deferContextual((contextView) -> {
+		return publisher.flatMap(consumerRecord -> Mono.deferContextual(contextView -> {
 			Span newSpanWithParent = propagator.extract(consumerRecord, extractor).kind(Span.Kind.CONSUMER)
 					.name("kafka.consumer").tag("kafka.topic", consumerRecord.topic())
 					.tag("kafka.offset", Long.toString(consumerRecord.offset()))

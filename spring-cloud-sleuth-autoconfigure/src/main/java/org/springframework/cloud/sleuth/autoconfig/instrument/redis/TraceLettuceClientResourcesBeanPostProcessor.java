@@ -146,7 +146,7 @@ enum NoOpTracing implements io.lettuce.core.tracing.Tracing, TraceContextProvide
 
 	INSTANCE;
 
-	private final Endpoint NOOP_ENDPOINT = new Endpoint() {
+	private final Endpoint noopEndpoint = new Endpoint() {
 	};
 
 	@Override
@@ -181,7 +181,7 @@ enum NoOpTracing implements io.lettuce.core.tracing.Tracing, TraceContextProvide
 
 	@Override
 	public Endpoint createEndpoint(SocketAddress socketAddress) {
-		return NOOP_ENDPOINT;
+		return noopEndpoint;
 	}
 
 	static class NoOpTracer extends Tracer {

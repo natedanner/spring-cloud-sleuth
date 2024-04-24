@@ -36,35 +36,35 @@ public class TraceVaultConfigurationTests {
 	@Test
 	public void shouldNotCreateVaultRestTemplateCustomizerWhenVaultNotOnClasspath() {
 		this.contextRunner.withClassLoader(new FilteredClassLoader(RestTemplateCustomizer.class))
-				.run((context) -> assertThat(context).doesNotHaveBean(RestTemplateCustomizer.class));
+				.run(context -> assertThat(context).doesNotHaveBean(RestTemplateCustomizer.class));
 	}
 
 	@Test
 	public void shouldNotCreateVaultWebClientCustomizerWhenVaultNotOnClasspath() {
 		this.contextRunner.withClassLoader(new FilteredClassLoader(WebClientCustomizer.class))
-				.run((context) -> assertThat(context).doesNotHaveBean(WebClientCustomizer.class));
+				.run(context -> assertThat(context).doesNotHaveBean(WebClientCustomizer.class));
 	}
 
 	@Test
 	public void shouldNotCreateVaultRestTemplateCustomizerWhenSleuthVaultDisabled() {
 		this.contextRunner.withPropertyValues("spring.sleuth.vault.enabled=false")
-				.run((context) -> assertThat(context).doesNotHaveBean(RestTemplateCustomizer.class));
+				.run(context -> assertThat(context).doesNotHaveBean(RestTemplateCustomizer.class));
 	}
 
 	@Test
 	public void shouldNotCreateVaultWebClientCustomizerWhenSleuthVaultDisabled() {
 		this.contextRunner.withPropertyValues("spring.sleuth.vault.enabled=false")
-				.run((context) -> assertThat(context).doesNotHaveBean(WebClientCustomizer.class));
+				.run(context -> assertThat(context).doesNotHaveBean(WebClientCustomizer.class));
 	}
 
 	@Test
 	public void shouldCreateVaultRestTemplateCustomizerWhenVaultNotOnClasspath() {
-		this.contextRunner.run((context) -> assertThat(context).hasSingleBean(RestTemplateCustomizer.class));
+		this.contextRunner.run(context -> assertThat(context).hasSingleBean(RestTemplateCustomizer.class));
 	}
 
 	@Test
 	public void shouldCreateVaultWebClientCustomizerWhenVaultNotOnClasspath() {
-		this.contextRunner.run((context) -> assertThat(context).hasSingleBean(WebClientCustomizer.class));
+		this.contextRunner.run(context -> assertThat(context).hasSingleBean(WebClientCustomizer.class));
 	}
 
 }

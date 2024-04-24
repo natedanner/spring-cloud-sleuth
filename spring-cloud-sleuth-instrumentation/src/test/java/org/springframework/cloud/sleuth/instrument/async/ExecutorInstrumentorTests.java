@@ -289,9 +289,8 @@ public class ExecutorInstrumentorTests {
 		BDDAssertions.then(AopUtils.isCglibProxy(wrappedExecutor)).isFalse();
 
 		AtomicBoolean wasCalled = new AtomicBoolean(false);
-		wrappedExecutor.execute(() -> {
-			wasCalled.set(true);
-		});
+		wrappedExecutor.execute(() ->
+			wasCalled.set(true));
 		BDDAssertions.then(wasCalled).isTrue();
 	}
 
@@ -437,9 +436,8 @@ public class ExecutorInstrumentorTests {
 		BDDAssertions.then(AopUtils.isJdkDynamicProxy(wrappedExecutor)).isTrue();
 		BDDAssertions.then(AopUtils.isCglibProxy(wrappedExecutor)).isFalse();
 		AtomicBoolean wasCalled = new AtomicBoolean(false);
-		wrappedExecutor.execute(() -> {
-			wasCalled.set(true);
-		});
+		wrappedExecutor.execute(() ->
+			wasCalled.set(true));
 		BDDAssertions.then(wasCalled).isTrue();
 	}
 
@@ -454,9 +452,8 @@ public class ExecutorInstrumentorTests {
 		BDDAssertions.then(AopUtils.isJdkDynamicProxy(wrappedExecutor)).isTrue();
 		BDDAssertions.then(AopUtils.isCglibProxy(wrappedExecutor)).isFalse();
 		AtomicBoolean wasCalled = new AtomicBoolean(false);
-		wrappedExecutor.execute(() -> {
-			wasCalled.set(true);
-		});
+		wrappedExecutor.execute(() ->
+			wasCalled.set(true));
 		BDDAssertions.then(wasCalled).isTrue();
 	}
 

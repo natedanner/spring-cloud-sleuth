@@ -100,7 +100,7 @@ public class TracingChannelOutboundHandler extends ChannelOutboundHandlerAdapter
 
 	@Override
 	public void read(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.read())) {
+		if (instrumentOperation(ctx, ctx::read)) {
 			return;
 		}
 
@@ -118,7 +118,7 @@ public class TracingChannelOutboundHandler extends ChannelOutboundHandlerAdapter
 
 	@Override
 	public void flush(ChannelHandlerContext ctx) {
-		if (instrumentOperation(ctx, () -> ctx.flush())) {
+		if (instrumentOperation(ctx, ctx::flush)) {
 			return;
 		}
 

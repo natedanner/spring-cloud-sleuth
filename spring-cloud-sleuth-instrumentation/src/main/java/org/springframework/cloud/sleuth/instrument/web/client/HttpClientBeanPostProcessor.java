@@ -220,7 +220,7 @@ public class HttpClientBeanPostProcessor implements BeanPostProcessor {
 
 	}
 
-	private static abstract class AbstractTracingDoOnHandler {
+	private abstract static class AbstractTracingDoOnHandler {
 
 		private static final Log log = LogFactory.getLog(AbstractTracingDoOnHandler.class);
 

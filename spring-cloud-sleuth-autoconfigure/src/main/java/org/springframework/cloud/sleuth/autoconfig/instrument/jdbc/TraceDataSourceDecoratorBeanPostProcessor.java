@@ -52,7 +52,7 @@ public class TraceDataSourceDecoratorBeanPostProcessor implements BeanPostProces
 
 	private static final Log log = LogFactory.getLog(TraceDataSourceDecoratorBeanPostProcessor.class);
 
-	private final static boolean HIKARI_AVAILABLE = ClassUtils.isPresent("com.zaxxer.hikari.HikariDataSource",
+	private static final boolean HIKARI_AVAILABLE = ClassUtils.isPresent("com.zaxxer.hikari.HikariDataSource",
 			DataSourceNameResolver.class.getClassLoader());
 
 	private ApplicationContext applicationContext;

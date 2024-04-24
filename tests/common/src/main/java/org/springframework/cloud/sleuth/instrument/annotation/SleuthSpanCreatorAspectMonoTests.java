@@ -400,12 +400,12 @@ public abstract class SleuthSpanCreatorAspectMonoTests {
 
 		Awaitility.await().untilAsserted(() -> {
 			FinishedSpan outerSpan = spans.reportedSpans().stream()
-					.filter(span -> span.getName().equals("outer-span-in-trace-context")).findFirst()
+					.filter(span -> "outer-span-in-trace-context".equals(span.getName())).findFirst()
 					.orElseThrow(() -> new AssertionError("No span with name [outer-span-in-trace-context] found"));
 			BDDAssertions.then(outerSpan.getName()).isEqualTo("outer-span-in-trace-context");
 			BDDAssertions.then(outerSpan.getSpanId()).isEqualTo(outerSpanIdBefore);
 			FinishedSpan innerSpan = spans.reportedSpans().stream()
-					.filter(span -> span.getName().equals("span-in-trace-context")).findFirst()
+					.filter(span -> "span-in-trace-context".equals(span.getName())).findFirst()
 					.orElseThrow(() -> new AssertionError("No span with name [span-in-trace-context] found"));
 			BDDAssertions.then(innerSpan.getName()).isEqualTo("span-in-trace-context");
 			BDDAssertions.then(innerSpan.getSpanId()).isEqualTo(innerSpanId);
@@ -443,12 +443,12 @@ public abstract class SleuthSpanCreatorAspectMonoTests {
 
 		Awaitility.await().untilAsserted(() -> {
 			FinishedSpan outerSpan = spans.reportedSpans().stream()
-					.filter(span -> span.getName().equals("outer-span-in-subscriber-context")).findFirst().orElseThrow(
+					.filter(span -> "outer-span-in-subscriber-context".equals(span.getName())).findFirst().orElseThrow(
 							() -> new AssertionError("No span with name [outer-span-in-subscriber-context] found"));
 			BDDAssertions.then(outerSpan.getName()).isEqualTo("outer-span-in-subscriber-context");
 			BDDAssertions.then(outerSpan.getSpanId()).isEqualTo(outerSpanIdBefore);
 			FinishedSpan innerSpan = spans.reportedSpans().stream()
-					.filter(span -> span.getName().equals("span-in-subscriber-context")).findFirst()
+					.filter(span -> "span-in-subscriber-context".equals(span.getName())).findFirst()
 					.orElseThrow(() -> new AssertionError("No span with name [span-in-subscriber-context] found"));
 			BDDAssertions.then(innerSpan.getName()).isEqualTo("span-in-subscriber-context");
 			BDDAssertions.then(innerSpan.getSpanId()).isEqualTo(innerSpanId);

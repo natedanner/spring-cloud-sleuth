@@ -43,7 +43,7 @@ class TraceMongoDbAutoConfigurationTests {
 	@Test
 	void should_create_synchronous_customizer_when_reactive_context_missing() {
 		this.contextRunner.withClassLoader(new FilteredClassLoader(ReactiveContextProvider.class))
-				.run((context) -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
+				.run(context -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceAllTypesMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceReactiveMongoClientSettingsBuilderCustomizer.class));
 	}
@@ -51,7 +51,7 @@ class TraceMongoDbAutoConfigurationTests {
 	@Test
 	void should_create_reactive_customizer_when_synchronous_context_missing() {
 		this.contextRunner.withClassLoader(new FilteredClassLoader(SynchronousContextProvider.class))
-				.run((context) -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
+				.run(context -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
 						.hasSingleBean(TraceReactiveMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceAllTypesMongoClientSettingsBuilderCustomizer.class));
 	}
@@ -59,7 +59,7 @@ class TraceMongoDbAutoConfigurationTests {
 	@Test
 	void should_create_all_types_customizer_when_both_contexts_are_present() {
 		this.contextRunner
-				.run((context) -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
+				.run(context -> assertThat(context).hasSingleBean(TraceMongoClientSettingsBuilderCustomizer.class)
 						.hasSingleBean(TraceAllTypesMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceReactiveMongoClientSettingsBuilderCustomizer.class));
 	}
@@ -69,7 +69,7 @@ class TraceMongoDbAutoConfigurationTests {
 		this.contextRunner
 				.withClassLoader(
 						new FilteredClassLoader(ReactiveContextProvider.class, SynchronousContextProvider.class))
-				.run((context) -> assertThat(context).doesNotHaveBean(TraceMongoClientSettingsBuilderCustomizer.class)
+				.run(context -> assertThat(context).doesNotHaveBean(TraceMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceAllTypesMongoClientSettingsBuilderCustomizer.class)
 						.doesNotHaveBean(TraceReactiveMongoClientSettingsBuilderCustomizer.class));
 	}

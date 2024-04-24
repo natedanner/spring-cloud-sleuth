@@ -111,8 +111,8 @@ public abstract class WebClientNotSampledTests {
 	}
 
 	static Stream parametersForShouldPropagateNotSamplingHeader() throws Exception {
-		return Stream.of((ResponseEntityProvider) (tests) -> tests.testFeignInterface.headers(),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/", Map.class));
+		return Stream.of((ResponseEntityProvider) tests -> tests.testFeignInterface.headers(),
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/", Map.class));
 	}
 
 	@FeignClient("fooservice")
@@ -178,7 +178,7 @@ public abstract class WebClientNotSampledTests {
 	public static class SimpleLoadBalancerClientConfiguration {
 
 		@Value("${local.server.port}")
-		private int port = 0;
+		private int port;
 
 		@Bean
 		public ServiceInstanceListSupplier serviceInstanceListSupplier() {

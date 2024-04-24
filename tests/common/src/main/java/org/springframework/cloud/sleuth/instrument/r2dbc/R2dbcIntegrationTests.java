@@ -79,7 +79,7 @@ public abstract class R2dbcIntegrationTests {
 
 		@Bean
 		public CommandLineRunner demo(ReactiveNewTransactionService reactiveNewTransactionService) {
-			return (args) -> {
+			return args -> {
 				try {
 					reactiveNewTransactionService.newTransaction().block(Duration.ofSeconds(50));
 				}

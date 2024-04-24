@@ -55,7 +55,7 @@ abstract class SleuthCoroutinesApplicationTests {
 	lateinit var restTemplate: RestTemplate
 
 	@Test
-	fun should_pass_tracing_context_within_coroutines(): Unit = runBlocking {
+	fun shouldPassTracingContextWithinCoroutines(): Unit = runBlocking {
 		val nextSpan = tracer.nextSpan()
 		val traceId = nextSpan.context().traceId()
 		tracer.withSpan(nextSpan.start()).use { withSpan ->

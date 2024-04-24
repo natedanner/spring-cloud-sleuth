@@ -193,7 +193,7 @@ public abstract class FlatMapTests {
 		LOGGER.info("Accumulated spans: " + spans);
 		List<String> traceIdOfFlatMap = spans.reportedSpans().stream()
 				.filter(span -> span.getTags().containsKey("http.path")
-						&& span.getTags().get("http.path").equals("/withFlatMap"))
+						&& "/withFlatMap".equals(span.getTags().get("http.path")))
 				.map(FinishedSpan::getTraceId).collect(Collectors.toList());
 		then(traceIdOfFlatMap).hasSize(1);
 		return traceIdOfFlatMap.get(0);
@@ -307,7 +307,7 @@ public abstract class FlatMapTests {
 
 class FactoryUser {
 
-	boolean wasSchedulerWrapped = false;
+	boolean wasSchedulerWrapped;
 
 	FactoryUser() {
 		Issue866Configuration.TestHook hook = Issue866Configuration.hook;

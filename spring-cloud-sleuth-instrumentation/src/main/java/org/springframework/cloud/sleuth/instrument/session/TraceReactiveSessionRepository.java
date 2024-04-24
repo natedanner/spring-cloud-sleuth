@@ -42,7 +42,7 @@ class TraceReactiveSessionRepository implements ReactiveSessionRepository {
 	@Override
 	public Mono createSession() {
 		return ReactorSleuth.tracedMono(this.tracer, this.currentTraceContext,
-				SleuthSessionSpan.SESSION_CREATE_SPAN.getName(), () -> this.delegate.createSession());
+				SleuthSessionSpan.SESSION_CREATE_SPAN.getName(), this.delegate::createSession);
 	}
 
 	@Override

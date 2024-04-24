@@ -31,13 +31,13 @@ class SpanIgnoringSpanFilterTests {
 	@Test
 	void should_not_register_span_handler_when_property_passed() {
 		this.contextRunner.withPropertyValues("spring.sleuth.span-filter.enabled=false")
-				.run((context) -> BDDAssertions.thenThrownBy(() -> context.getBean(SpanIgnoringSpanFilter.class))
+				.run(context -> BDDAssertions.thenThrownBy(() -> context.getBean(SpanIgnoringSpanFilter.class))
 						.isInstanceOf(NoSuchBeanDefinitionException.class));
 	}
 
 	@Test
 	void should_register_span_handler_by_default() {
-		this.contextRunner.run((context) -> context.getBean(SpanIgnoringSpanFilter.class));
+		this.contextRunner.run(context -> context.getBean(SpanIgnoringSpanFilter.class));
 	}
 
 }

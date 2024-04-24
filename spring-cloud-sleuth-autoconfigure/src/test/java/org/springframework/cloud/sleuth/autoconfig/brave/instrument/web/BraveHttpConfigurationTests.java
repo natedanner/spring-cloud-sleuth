@@ -45,7 +45,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void defaultsClientSamplerToDefer() {
-		contextRunner().run((context) -> {
+		contextRunner().run(context -> {
 			SamplerFunction<HttpRequest> clientSampler = context.getBean(HttpTracing.class).clientRequestSampler();
 
 			then(clientSampler.trySample(mockHttpRequestForPath("foo"))).isNull();
@@ -54,7 +54,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void configuresClientSkipPattern() throws Exception {
-		contextRunner().withPropertyValues("spring.sleuth.web.client.skip-pattern=foo.*|bar.*").run((context) -> {
+		contextRunner().withPropertyValues("spring.sleuth.web.client.skip-pattern=foo.*|bar.*").run(context -> {
 			SamplerFunction<HttpRequest> clientSampler = context.getBean(HttpTracing.class).clientRequestSampler();
 
 			then(clientSampler.trySample(mockHttpRequestForPath("foo"))).isFalse();
@@ -71,7 +71,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void configuresUserProvidedHttpClientSampler() {
-		contextRunner().withUserConfiguration(HttpClientSamplerConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(HttpClientSamplerConfig.class).run(context -> {
 			SamplerFunction<HttpRequest> clientSampler = context.getBean(HttpTracing.class).clientRequestSampler();
 
 			then(clientSampler.trySample(mockHttpRequestForPath("foo"))).isNull();
@@ -80,7 +80,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void defaultsServerSamplerToSkipPattern() {
-		contextRunner().withPropertyValues("spring.sleuth.web.skip-pattern=foo.*|bar.*").run((context) -> {
+		contextRunner().withPropertyValues("spring.sleuth.web.skip-pattern=foo.*|bar.*").run(context -> {
 			SamplerFunction<HttpRequest> serverSampler = context.getBean(HttpTracing.class).serverRequestSampler();
 
 			then(serverSampler.trySample(mockHttpRequestForPath("foo"))).isFalse();
@@ -91,7 +91,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void defaultsServerSamplerToDeferWhenSkipPatternCleared() {
-		contextRunner().withPropertyValues("spring.sleuth.web.skip-pattern").run((context) -> {
+		contextRunner().withPropertyValues("spring.sleuth.web.skip-pattern").run(context -> {
 			SamplerFunction<HttpRequest> clientSampler = context.getBean(HttpTracing.class).serverRequestSampler();
 
 			then(clientSampler.trySample(mockHttpRequestForPath("foo"))).isNull();
@@ -100,7 +100,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void defaultHttpClientParser() {
-		contextRunner().run((context) -> {
+		contextRunner().run(context -> {
 			HttpRequestParser clientRequestParser = context.getBean(HttpTracing.class).clientRequestParser();
 			HttpResponseParser clientResponseParser = context.getBean(HttpTracing.class).clientResponseParser();
 
@@ -111,7 +111,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void configuresUserProvidedHttpClientParser() {
-		contextRunner().withUserConfiguration(HttpClientParserConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(HttpClientParserConfig.class).run(context -> {
 			HttpRequestParser clientRequestParser = context.getBean(HttpTracing.class).clientRequestParser();
 			HttpResponseParser clientResponseParser = context.getBean(HttpTracing.class).clientResponseParser();
 
@@ -122,7 +122,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void defaultHttpServerParser() {
-		contextRunner().run((context) -> {
+		contextRunner().run(context -> {
 			HttpRequestParser serverRequestParser = context.getBean(HttpTracing.class).serverRequestParser();
 			HttpResponseParser serverResponseParser = context.getBean(HttpTracing.class).serverResponseParser();
 
@@ -133,7 +133,7 @@ public class BraveHttpConfigurationTests {
 
 	@Test
 	public void configuresUserProvidedHttpServerParser() {
-		contextRunner().withUserConfiguration(HttpServerParserConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(HttpServerParserConfig.class).run(context -> {
 			HttpRequestParser serverRequestParser = context.getBean(HttpTracing.class).serverRequestParser();
 			HttpResponseParser serverResponseParser = context.getBean(HttpTracing.class).serverResponseParser();
 
@@ -147,7 +147,7 @@ public class BraveHttpConfigurationTests {
 	 */
 	@Test
 	public void configuresUserProvidedHttpClientAndServerParser() {
-		contextRunner().withUserConfiguration(HttpParserConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(HttpParserConfig.class).run(context -> {
 			HttpRequestParser serverRequestParser = context.getBean(HttpTracing.class).serverRequestParser();
 			HttpResponseParser serverResponseParser = context.getBean(HttpTracing.class).serverResponseParser();
 			HttpRequestParser clientRequestParser = context.getBean(HttpTracing.class).clientRequestParser();
@@ -164,9 +164,8 @@ public class BraveHttpConfigurationTests {
 	public void hasNoCycles() {
 		contextRunner().withConfiguration(AutoConfigurations.of(BraveHttpConfiguration.class))
 				.withInitializer(c -> ((GenericApplicationContext) c).setAllowCircularReferences(false))
-				.run((context) -> {
-					BDDAssertions.then(context.isRunning()).isEqualTo(true);
-				});
+				.run(context ->
+					BDDAssertions.then(context.isRunning()).isEqualTo(true));
 	}
 
 	private ApplicationContextRunner contextRunner(String... propertyValues) {

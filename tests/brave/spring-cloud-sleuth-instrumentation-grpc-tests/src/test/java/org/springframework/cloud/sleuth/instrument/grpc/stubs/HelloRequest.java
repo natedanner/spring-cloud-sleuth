@@ -67,7 +67,7 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 		if (extensionRegistry == null) {
 			throw new java.lang.NullPointerException();
 		}
-		int mutable_bitField0_ = 0;
+		int mutableBitField0 = 0;
 		com.google.protobuf.UnknownFieldSet.Builder unknownFields = com.google.protobuf.UnknownFieldSet.newBuilder();
 		try {
 			boolean done = false;
@@ -77,16 +77,15 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 				case 0:
 					done = true;
 					break;
-				default:
-					if (!parseUnknownFieldProto3(input, unknownFields, extensionRegistry, tag)) {
-						done = true;
-					}
-					break;
 				case 10:
 					String s = input.readStringRequireUtf8();
 
 					this.name_ = s;
 					break;
+				default:
+					if (!parseUnknownFieldProto3(input, unknownFields, extensionRegistry, tag)) {
+						done = true;
+					}
 				}
 			}
 		}
@@ -102,7 +101,7 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 		}
 	}
 
-	public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+	public static com.google.protobuf.Descriptors.Descriptor getDescriptor() {
 		return HelloServiceOuterClass.internal_static_sample_grpc_HelloRequest_descriptor;
 	}
 
@@ -304,8 +303,7 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 
 	@java.lang.Override
 	protected Builder newBuilderForType(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-		Builder builder = new Builder(parent);
-		return builder;
+		return new Builder(parent);
 	}
 
 	@java.lang.Override
@@ -341,7 +339,7 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 			maybeForceBuilderInitialization();
 		}
 
-		public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
+		public static com.google.protobuf.Descriptors.Descriptor getDescriptor() {
 			return HelloServiceOuterClass.internal_static_sample_grpc_HelloRequest_descriptor;
 		}
 
@@ -352,8 +350,6 @@ public final class HelloRequest extends com.google.protobuf.GeneratedMessageV3 i
 		}
 
 		private void maybeForceBuilderInitialization() {
-			if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {
-			}
 		}
 
 		@Override

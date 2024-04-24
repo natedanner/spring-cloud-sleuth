@@ -127,7 +127,7 @@ final class TraceFeignObjectWrapper {
 					(LoadBalancerClientFactory) loadBalancerClientFactory(), beanFactory);
 		}
 		else {
-			RetryableFeignBlockingLoadBalancerClient client = ((RetryableFeignBlockingLoadBalancerClient) bean);
+			RetryableFeignBlockingLoadBalancerClient client = (RetryableFeignBlockingLoadBalancerClient) bean;
 			try {
 				Field delegate = RetryableFeignBlockingLoadBalancerClient.class.getDeclaredField(DELEGATE);
 				delegate.setAccessible(true);

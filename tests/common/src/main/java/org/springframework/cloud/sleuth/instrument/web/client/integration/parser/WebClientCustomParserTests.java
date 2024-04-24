@@ -120,7 +120,7 @@ public abstract class WebClientCustomParserTests {
 	public static class SimpleLoadBalancerClientConfiguration {
 
 		@Value("${local.server.port}")
-		private int port = 0;
+		private int port;
 
 		@Bean
 		public ServiceInstanceListSupplier serviceInstanceListSupplier() {

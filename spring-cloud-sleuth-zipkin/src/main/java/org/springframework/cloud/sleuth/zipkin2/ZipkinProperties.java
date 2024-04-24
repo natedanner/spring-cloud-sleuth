@@ -42,7 +42,7 @@ public class ZipkinProperties {
 	 * monitoring tools, such as New Relic. The trace API doesn't need the API path, so
 	 * you can set it to blank ("") in the configuration.
 	 */
-	private String apiPath = null;
+	private String apiPath;
 
 	/**
 	 * If set to {@code false}, will treat the {@link ZipkinProperties#baseUrl} as a URL
@@ -176,7 +176,7 @@ public class ZipkinProperties {
 	/** When enabled, spans are gzipped before sent to the zipkin server. */
 	public static class Compression {
 
-		private boolean enabled = false;
+		private boolean enabled;
 
 		public boolean isEnabled() {
 			return this.enabled;

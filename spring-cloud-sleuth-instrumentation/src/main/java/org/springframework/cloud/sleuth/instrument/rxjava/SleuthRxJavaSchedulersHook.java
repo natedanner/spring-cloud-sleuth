@@ -74,7 +74,7 @@ public class SleuthRxJavaSchedulersHook extends RxJavaSchedulersHook {
 	}
 
 	private List<Pattern> toPatternList(List<String> threadsToIgnore) {
-		if (threadsToIgnore == null || threadsToIgnore.size() == 0) {
+		if (threadsToIgnore == null || threadsToIgnore.isEmpty()) {
 			return Collections.emptyList();
 		}
 		List<Pattern> patterns = new ArrayList<>(threadsToIgnore.size());

@@ -40,12 +40,12 @@ public class LazySleuthSpanContextSupplier implements SpanContextSupplier, Smart
 
 	@Override
 	public String getTraceId() {
-		return (this.delegate != null) ? this.delegate.getTraceId() : null;
+		return this.delegate != null ? this.delegate.getTraceId() : null;
 	}
 
 	@Override
 	public String getSpanId() {
-		return (this.delegate != null) ? this.delegate.getSpanId() : null;
+		return this.delegate != null ? this.delegate.getSpanId() : null;
 	}
 
 	@Override

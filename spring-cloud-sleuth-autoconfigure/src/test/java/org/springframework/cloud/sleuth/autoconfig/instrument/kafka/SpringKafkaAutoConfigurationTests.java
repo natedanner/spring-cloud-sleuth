@@ -45,7 +45,7 @@ class SpringKafkaAutoConfigurationTests {
 
 	@Test
 	void should_be_disabled_when_brave_on_classpath() {
-		this.contextRunner.run((context) -> assertThat(context)
+		this.contextRunner.run(context -> assertThat(context)
 				.doesNotHaveBean(SpringKafkaFactoryBeanPostProcessor.class).doesNotHaveBean(TracingKafkaAspect.class));
 	}
 
@@ -55,7 +55,7 @@ class SpringKafkaAutoConfigurationTests {
 				.withBean(ProducerFactory.class, TestProducerFactory::new)
 				.run(context -> assertThat(context).getBean(ProducerFactory.class)
 						.extracting(ProducerFactory::getPostProcessors).matches(postProcessors -> postProcessors
-								.stream().filter(p -> p instanceof SpringKafkaProducerPostProcessor).count() == 1));
+								.stream().filter(SpringKafkaProducerPostProcessor.class::isInstance).count() == 1));
 	}
 
 	@Test
@@ -64,13 +64,13 @@ class SpringKafkaAutoConfigurationTests {
 				.withBean(ConsumerFactory.class, TestConsumerFactory::new)
 				.run(context -> assertThat(context).getBean(ConsumerFactory.class)
 						.extracting(ConsumerFactory::getPostProcessors).matches(postProcessors -> postProcessors
-								.stream().filter(p -> p instanceof SpringKafkaConsumerPostProcessor).count() == 1));
+								.stream().filter(SpringKafkaConsumerPostProcessor.class::isInstance).count() == 1));
 	}
 
 	@Test
 	void should_register_tracing_kafka_aspect() {
 		this.contextRunner.withClassLoader(new FilteredClassLoader(KafkaTracing.class))
-				.run((context) -> assertThat(context).hasSingleBean(TracingKafkaAspect.class));
+				.run(context -> assertThat(context).hasSingleBean(TracingKafkaAspect.class));
 	}
 
 	class TestConsumerFactory implements ConsumerFactory {

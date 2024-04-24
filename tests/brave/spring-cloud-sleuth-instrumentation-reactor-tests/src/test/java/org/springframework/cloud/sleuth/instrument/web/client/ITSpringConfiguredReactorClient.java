@@ -88,27 +88,27 @@ abstract class ITSpringConfiguredReactorClient extends ITHttpAsyncClient<Annotat
 	}
 
 	@Override
-	final protected void closeClient(AnnotationConfigApplicationContext context) {
+	protected final void closeClient(AnnotationConfigApplicationContext context) {
 		context.close(); // ensures shutdown hooks fire
 	}
 
 	@Override
-	final protected void get(AnnotationConfigApplicationContext context, String pathIncludingQuery) {
+	protected final void get(AnnotationConfigApplicationContext context, String pathIncludingQuery) {
 		getMono(context, pathIncludingQuery).block();
 	}
 
 	@Override
-	final protected void options(AnnotationConfigApplicationContext context, String path) {
+	protected final void options(AnnotationConfigApplicationContext context, String path) {
 		optionsMono(context, path).block();
 	}
 
 	@Override
-	final protected void post(AnnotationConfigApplicationContext context, String pathIncludingQuery, String body) {
+	protected final void post(AnnotationConfigApplicationContext context, String pathIncludingQuery, String body) {
 		postMono(context, pathIncludingQuery, body).block();
 	}
 
 	@Override
-	final protected void get(AnnotationConfigApplicationContext context, String path,
+	protected final void get(AnnotationConfigApplicationContext context, String path,
 			BiConsumer<Integer, Throwable> callback) {
 		TestHttpCallbackSubscriber.subscribe(getMono(context, path), callback);
 	}

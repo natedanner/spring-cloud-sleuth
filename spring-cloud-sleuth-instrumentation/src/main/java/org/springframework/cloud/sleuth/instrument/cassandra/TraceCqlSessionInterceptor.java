@@ -75,23 +75,23 @@ class TraceCqlSessionInterceptor implements MethodInterceptor {
 		if (isContextUnusable()) {
 			return invocation.proceed();
 		}
-		if (method.getName().equals("execute")) {
+		if ("execute".equals(method.getName())) {
 			if (args.length > 0) {
 				return tracedCall(createStatement(args), "execute", this.delegate::execute);
 			}
 		}
-		if (method.getName().equals("executeAsync")) {
+		if ("executeAsync".equals(method.getName())) {
 			if (args.length > 0) {
 				return tracedCall(createStatement(args), "executeAsync", this.delegate::executeAsync);
 			}
 		}
-		if (method.getName().equals("prepare")) {
+		if ("prepare".equals(method.getName())) {
 			if (args.length > 0) {
 				return tracedCall(createStatement(args), "prepare",
 						statement -> this.delegate.prepare((SimpleStatement) statement));
 			}
 		}
-		if (method.getName().equals("prepareAsync")) {
+		if ("prepareAsync".equals(method.getName())) {
 			if (args.length > 0) {
 				return tracedCall(createStatement(args), "prepareAsync",
 						statement -> this.delegate.prepareAsync((SimpleStatement) statement));

@@ -53,30 +53,27 @@ public class TraceQuartzAutoConfigurationTest {
 	@Test
 	public void should_create_job_listener_bean_when_all_conditions_are_met() {
 		// when
-		this.contextRunner.run(context -> {
+		this.contextRunner.run(context ->
 			// expect
-			Assertions.assertThat(context).hasSingleBean(TracingJobListener.class);
-		});
+			Assertions.assertThat(context).hasSingleBean(TracingJobListener.class));
 	}
 
 	@Test
 	public void should_add_listener_to_trigger_listeners_when_conditions_are_met() {
 		// when
-		this.contextRunner.run(context -> {
+		this.contextRunner.run(context ->
 			// expect
 			Mockito.verify(context.getBean(Scheduler.class).getListenerManager())
-					.addTriggerListener(context.getBean(TracingJobListener.class));
-		});
+					.addTriggerListener(context.getBean(TracingJobListener.class)));
 	}
 
 	@Test
 	public void should_add_listener_job_listeners_when_conditions_are_met() {
 		// when
-		this.contextRunner.run(context -> {
+		this.contextRunner.run(context ->
 			// expect
 			Mockito.verify(context.getBean(Scheduler.class).getListenerManager())
-					.addJobListener(context.getBean(TracingJobListener.class));
-		});
+					.addJobListener(context.getBean(TracingJobListener.class)));
 	}
 
 	@Test
@@ -86,10 +83,9 @@ public class TraceQuartzAutoConfigurationTest {
 				.of(SchedulerConfig.class, TraceQuartzAutoConfiguration.class))
 
 				// when
-				.run(context -> {
+				.run(context ->
 					// expect
-					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class);
-				});
+					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class));
 	}
 
 	@Test
@@ -100,10 +96,9 @@ public class TraceQuartzAutoConfigurationTest {
 						.of(TraceQuartzAutoConfiguration.class))
 
 				// when
-				.run(context -> {
+				.run(context ->
 					// expect
-					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class);
-				});
+					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class));
 	}
 
 	@Test
@@ -111,9 +106,8 @@ public class TraceQuartzAutoConfigurationTest {
 		// when
 		this.contextRunner.withPropertyValues("spring.sleuth.quartz.enabled=false")
 				// expect
-				.run(context -> {
-					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class);
-				});
+				.run(context ->
+					Assertions.assertThat(context).doesNotHaveBean(TracingJobListener.class));
 	}
 
 	@Configuration(proxyBeanMethods = false)

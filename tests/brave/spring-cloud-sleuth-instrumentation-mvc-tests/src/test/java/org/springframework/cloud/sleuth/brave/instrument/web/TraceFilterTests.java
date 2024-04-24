@@ -58,7 +58,7 @@ public class TraceFilterTests extends org.springframework.cloud.sleuth.instrumen
 		this.request = builder().header("b3", "0000000000000014-000000000000000a")
 				.buildRequest(new MockServletContext());
 		TracerAware aware = tracerTest().tracing();
-		BraveTestTracing braveTestTracing = ((BraveTestTracing) aware);
+		BraveTestTracing braveTestTracing = (BraveTestTracing) aware;
 		braveTestTracing.tracingBuilder(braveTestTracing.tracingBuilder().supportsJoin(false)).reset();
 
 		TracingFilter.create(aware.currentTraceContext(), httpServerHandler()).doFilter(this.request, this.response,

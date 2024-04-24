@@ -133,7 +133,7 @@ public class JmsTracingConfigurationTest {
 
 		@Bean
 		XAConnectionFactoryWrapper xaConnectionFactoryWrapper() {
-			return connectionFactory -> (ConnectionFactory) connectionFactory;
+			return ConnectionFactory.class::cast;
 		}
 
 	}

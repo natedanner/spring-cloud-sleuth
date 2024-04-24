@@ -30,7 +30,7 @@ import static org.assertj.core.api.BDDAssertions.then;
  */
 public class ProbabilityBasedSamplerTests {
 
-	private static Random RANDOM = new Random();
+	private static final Random RANDOM = new Random();
 
 	@Test
 	public void should_pass_all_samples_when_config_has_1_probability() throws Exception {
@@ -50,7 +50,7 @@ public class ProbabilityBasedSamplerTests {
 	@Test
 	public void should_pass_given_percent_of_samples() throws Exception {
 		int numberOfIterations = 1000;
-		float probability = 1f;
+		float probability = 1F;
 
 		int numberOfSampledElements = countNumberOfSampledElements(numberOfIterations, () -> probability);
 
@@ -60,7 +60,7 @@ public class ProbabilityBasedSamplerTests {
 	@Test
 	public void should_pass_given_percent_of_samples_with_fractional_element() throws Exception {
 		int numberOfIterations = 1000;
-		float probability = 0.35f;
+		float probability = 0.35F;
 
 		int numberOfSampledElements = countNumberOfSampledElements(numberOfIterations, () -> probability);
 

@@ -252,7 +252,7 @@ class ProxyDataSourceConfigurationTests {
 
 		@Bean
 		public QueryTransformer queryTransformer() {
-			return (transformInfo) -> "TestQuery";
+			return transformInfo -> "TestQuery";
 		}
 
 		@Bean

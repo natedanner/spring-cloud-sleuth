@@ -41,13 +41,13 @@ public class KafkaFactoryBeanPostProcessor implements BeanPostProcessor {
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		if (bean instanceof ConsumerFactory) {
 			ConsumerFactory factory = (ConsumerFactory) bean;
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof TraceConsumerPostProcessor)) {
+			if (factory.getPostProcessors().stream().noneMatch(TraceConsumerPostProcessor.class::isInstance)) {
 				factory.addPostProcessor(new TraceConsumerPostProcessor(this.beanFactory));
 			}
 		}
 		else if (bean instanceof ProducerFactory) {
 			ProducerFactory factory = (ProducerFactory) bean;
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof TraceProducerPostProcessor)) {
+			if (factory.getPostProcessors().stream().noneMatch(TraceProducerPostProcessor.class::isInstance)) {
 				factory.addPostProcessor(new TraceProducerPostProcessor(this.beanFactory));
 			}
 		}

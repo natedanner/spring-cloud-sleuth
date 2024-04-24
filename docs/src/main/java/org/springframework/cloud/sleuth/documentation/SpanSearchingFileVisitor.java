@@ -77,7 +77,7 @@ class SpanSearchingFileVisitor extends SimpleFileVisitor<Path> {
 				return FileVisitResult.CONTINUE;
 			}
 			System.out.println("Checking [" + myEnum.getName() + "]");
-			if (myEnum.getEnumConstants().size() == 0) {
+			if (myEnum.getEnumConstants().isEmpty()) {
 				return FileVisitResult.CONTINUE;
 			}
 			for (EnumConstantSource enumConstant : myEnum.getEnumConstants()) {
@@ -150,7 +150,7 @@ class SpanSearchingFileVisitor extends SimpleFileVisitor<Path> {
 			return;
 		}
 		System.out.println("Checking [" + parentEnum.getName() + "." + myEnum.getName() + "]");
-		if (myEnum.getEnumConstants().size() == 0) {
+		if (myEnum.getEnumConstants().isEmpty()) {
 			return;
 		}
 		for (EnumConstantSource enumConstant : myEnum.getEnumConstants()) {

@@ -136,7 +136,7 @@ public abstract class TraceableScheduledExecutorServiceTest implements TestTraci
 	}
 
 	Predicate<Object> instanceOf(Class clazz) {
-		return (argument) -> argument.getClass().isAssignableFrom(clazz);
+		return argument -> argument.getClass().isAssignableFrom(clazz);
 	}
 
 	<T> ArgumentMatcher<T> matcher(Class<T> clazz, Predicate predicate) {

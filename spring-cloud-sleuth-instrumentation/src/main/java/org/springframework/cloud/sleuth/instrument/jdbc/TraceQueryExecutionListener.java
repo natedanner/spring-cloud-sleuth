@@ -61,7 +61,7 @@ public class TraceQueryExecutionListener implements QueryExecutionListener, Meth
 
 	@Override
 	public void afterQuery(ExecutionInfo execInfo, List<QueryInfo> queryInfoList) {
-		if (execInfo.getMethod().getName().equals("executeUpdate") && execInfo.getThrowable() == null) {
+		if ("executeUpdate".equals(execInfo.getMethod().getName()) && execInfo.getThrowable() == null) {
 			this.strategy.addQueryRowCount(execInfo.getConnectionId(), execInfo.getStatement(),
 					(int) execInfo.getResult());
 		}
@@ -75,13 +75,13 @@ public class TraceQueryExecutionListener implements QueryExecutionListener, Meth
 		String methodName = executionContext.getMethod().getName();
 		String dataSourceName = executionContext.getProxyConfig().getDataSourceName();
 		String connectionId = executionContext.getConnectionInfo().getConnectionId();
-		if (target instanceof DataSource && methodName.equals("getConnection")) {
+		if (target instanceof DataSource && "getConnection".equals(methodName)) {
 			DataSource dataSource = (DataSource) target;
 			this.strategy.beforeGetConnection(connectionId, dataSource, dataSourceName);
 		}
 		else if (target instanceof ResultSet) {
 			ResultSet resultSet = (ResultSet) target;
-			if (methodName.equals("next")) {
+			if ("next".equals(methodName)) {
 				try {
 					this.strategy.beforeResultSetNext(connectionId, resultSet.getStatement(), resultSet);
 				}
@@ -98,7 +98,7 @@ public class TraceQueryExecutionListener implements QueryExecutionListener, Meth
 		String dataSourceName = executionContext.getProxyConfig().getDataSourceName();
 		String connectionId = executionContext.getConnectionInfo().getConnectionId();
 		Throwable t = executionContext.getThrown();
-		if (target instanceof DataSource && methodName.equals("getConnection")) {
+		if (target instanceof DataSource && "getConnection".equals(methodName)) {
 			Connection connection = (Connection) executionContext.getResult();
 			this.strategy.afterGetConnection(connectionId, connection, dataSourceName, t);
 		}
@@ -115,10 +115,10 @@ public class TraceQueryExecutionListener implements QueryExecutionListener, Meth
 				break;
 			}
 		}
-		else if (target instanceof Statement && methodName.equals("close")) {
+		else if (target instanceof Statement && "close".equals(methodName)) {
 			this.strategy.afterStatementClose(connectionId, (Statement) target);
 		}
-		else if (target instanceof ResultSet && methodName.equals("close")) {
+		else if (target instanceof ResultSet && "close".equals(methodName)) {
 			ResultSet resultSet = (ResultSet) target;
 			this.strategy.afterResultSetClose(connectionId, resultSet, -1, t);
 		}

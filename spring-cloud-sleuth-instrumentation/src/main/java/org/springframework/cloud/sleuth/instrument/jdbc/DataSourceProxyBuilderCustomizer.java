@@ -173,10 +173,10 @@ public class DataSourceProxyBuilderCustomizer {
 			return Level.parse(logLevel);
 		}
 		catch (IllegalArgumentException e) {
-			if (logLevel.equalsIgnoreCase("DEBUG")) {
+			if ("DEBUG".equalsIgnoreCase(logLevel)) {
 				return Level.FINE;
 			}
-			if (logLevel.equalsIgnoreCase("WARN")) {
+			if ("WARN".equalsIgnoreCase(logLevel)) {
 				return Level.WARNING;
 			}
 			throw new IllegalArgumentException("Unresolved log level " + logLevel + " for java.util.logging", e);

@@ -76,7 +76,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 		Publisher<Integer> traced = Flux.just(1, 2, 3);
 
 		try (CurrentTraceContext.Scope ws = this.currentTraceContext.newScope(context())) {
-			Flux.from(traced).map(d -> d + 1).map(d -> d + 1).map((d) -> {
+			Flux.from(traced).map(d -> d + 1).map(d -> d + 1).map(d -> {
 				spanInOperation.set(this.currentTraceContext.context());
 				return d + 1;
 			}).map(d -> d + 1).subscribe(d -> {
@@ -92,7 +92,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 		final AtomicReference<TraceContext> spanInOperation = new AtomicReference<>();
 
 		try (CurrentTraceContext.Scope ws = this.currentTraceContext.newScope(context())) {
-			Mono.just(1).flatMap(d -> Flux.just(d + 1).collectList().map(p -> p.get(0))).map(d -> d + 1).map((d) -> {
+			Mono.just(1).flatMap(d -> Flux.just(d + 1).collectList().map(p -> p.get(0))).map(d -> d + 1).map(d -> {
 				spanInOperation.set(this.currentTraceContext.context());
 				return d + 1;
 			}).map(d -> d + 1).subscribe(d -> {
@@ -109,7 +109,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 
 		try (CurrentTraceContext.Scope ws = this.currentTraceContext.newScope(context())) {
 			Flux.just(1, 2, 3).publishOn(Schedulers.single()).log("reactor.1").map(d -> d + 1).map(d -> d + 1)
-					.publishOn(secondScheduler).log("reactor.2").map((d) -> {
+					.publishOn(secondScheduler).log("reactor.2").map(d -> {
 						spanInOperation.set(this.currentTraceContext.context());
 						return d + 1;
 					}).map(d -> d + 1).blockLast();
@@ -122,7 +122,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 
 		try (CurrentTraceContext.Scope ws = this.currentTraceContext.newScope(context2())) {
 			Flux.just(1, 2, 3).publishOn(Schedulers.single()).log("reactor.").map(d -> d + 1).map(d -> d + 1)
-					.map((d) -> {
+					.map(d -> {
 						spanInOperation.set(this.currentTraceContext.context());
 						return d + 1;
 					}).map(d -> d + 1).blockLast();
@@ -143,7 +143,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 				spanInOperation.set(this.currentTraceContext.context());
 				return 1;
 			}).publishOn(Schedulers.single()).log("reactor.1").map(d -> d + 1).map(d -> d + 1)
-					.publishOn(secondScheduler).log("reactor.2").map((d) -> d + 1).map(d -> d + 1)
+					.publishOn(secondScheduler).log("reactor.2").map(d -> d + 1).map(d -> d + 1)
 					.subscribeOn(subscribeScheduler).block();
 
 			Awaitility.await().untilAsserted(() -> then(spanInOperation.get()).isEqualTo(context()));
@@ -175,7 +175,7 @@ public abstract class ScopePassingSpanSubscriberSpringBootTests {
 			one.asMono()
 					// hook is not applied for Processors so first operator after it will
 					// not be decorated with brave context
-					.map(d -> d + 1).map((d) -> {
+					.map(d -> d + 1).map(d -> {
 						spanInOperation.set(this.currentTraceContext.context());
 						return d + 1;
 					}).map(d -> d + 1).doOnSubscribe(subscription -> {

@@ -128,10 +128,10 @@ final class TraceStatement implements MethodInterceptor {
 	@Nullable
 	@Override
 	public Object invoke(@Nonnull MethodInvocation invocation) throws Throwable {
-		if (invocation.getMethod().getName().equals("getSpan")) {
+		if ("getSpan".equals(invocation.getMethod().getName())) {
 			return this.span;
 		}
-		if (invocation.getMethod().getName().equals("customizeSpan")) {
+		if ("customizeSpan".equals(invocation.getMethod().getName())) {
 			AssertingSpan.of(SleuthCassandraSpan.CASSANDRA_SPAN, this.span)
 					.name(getSpanName((String) invocation.getArguments()[0]))
 					.tag(SleuthCassandraSpan.Tags.CQL_TAG, getCql());

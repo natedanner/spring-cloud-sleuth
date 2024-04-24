@@ -108,7 +108,7 @@ public final class HelloServiceGrpc {
 	 * The Hello service definition.
 	 * </pre>
 	 */
-	public static abstract class HelloServiceImplBase implements io.grpc.BindableService {
+	public abstract static class HelloServiceImplBase implements io.grpc.BindableService {
 
 		/**
 		 * <pre>
@@ -239,12 +239,11 @@ public final class HelloServiceGrpc {
 		@java.lang.Override
 		@java.lang.SuppressWarnings("unchecked")
 		public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
-			switch (this.methodId) {
-			case METHODID_SAY_HELLO:
+			if (this.methodId == METHODID_SAY_HELLO) {
 				this.serviceImpl.sayHello((HelloRequest) request,
 						(io.grpc.stub.StreamObserver<HelloReply>) responseObserver);
-				break;
-			default:
+			}
+			else {
 				throw new AssertionError();
 			}
 		}
@@ -252,15 +251,12 @@ public final class HelloServiceGrpc {
 		@java.lang.Override
 		@java.lang.SuppressWarnings("unchecked")
 		public io.grpc.stub.StreamObserver<Req> invoke(io.grpc.stub.StreamObserver<Resp> responseObserver) {
-			switch (this.methodId) {
-			default:
-				throw new AssertionError();
-			}
+			throw new AssertionError();
 		}
 
 	}
 
-	private static abstract class HelloServiceBaseDescriptorSupplier
+	private abstract static class HelloServiceBaseDescriptorSupplier
 			implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
 
 		HelloServiceBaseDescriptorSupplier() {

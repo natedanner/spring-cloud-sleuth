@@ -60,9 +60,8 @@ class SleuthProxyDataSourceListenerAutoConfigurationTests {
 	void testDoesNotAddDatasourceProxyListenerIfNoTracer() {
 		ApplicationContextRunner contextRunner = this.contextRunner.withPropertyValues("spring.sleuth.enabled:false");
 
-		contextRunner.run(context -> {
-			assertThat(context).doesNotHaveBean(DataSourceWrapper.class);
-		});
+		contextRunner.run(context ->
+			assertThat(context).doesNotHaveBean(DataSourceWrapper.class));
 	}
 
 }

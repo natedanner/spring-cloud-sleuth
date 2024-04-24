@@ -57,7 +57,7 @@ public abstract class TraceRestTemplateInterceptorIntegrationTests implements Te
 		mockWebServer.close();
 	}
 
-	private RestTemplate template = new RestTemplate(clientHttpRequestFactory());
+	private final RestTemplate template = new RestTemplate(clientHttpRequestFactory());
 
 	Tracer tracer = tracerTest().tracing().tracer();
 

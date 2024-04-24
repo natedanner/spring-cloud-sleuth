@@ -45,16 +45,14 @@ public class TraceWebServletConfigurationTests {
 
 	@Test
 	public void shouldNotCreateTracedWebBeansWhenServletClassMissing() {
-		this.contextRunner.withClassLoader(new FilteredClassLoader(HandlerInterceptorAdapter.class)).run((context) -> {
-			assertThat(context).doesNotHaveBean(TraceWebAspect.class);
-		});
+		this.contextRunner.withClassLoader(new FilteredClassLoader(HandlerInterceptorAdapter.class)).run(context ->
+			assertThat(context).doesNotHaveBean(TraceWebAspect.class));
 	}
 
 	@Test
 	public void shouldCreateTracedWebBeansWhenServletClassNotMissing() {
-		this.contextRunner.run((context) -> {
-			assertThat(context).hasSingleBean(TraceWebAspect.class);
-		});
+		this.contextRunner.run(context ->
+			assertThat(context).hasSingleBean(TraceWebAspect.class));
 	}
 
 	@Configuration(proxyBeanMethods = false)

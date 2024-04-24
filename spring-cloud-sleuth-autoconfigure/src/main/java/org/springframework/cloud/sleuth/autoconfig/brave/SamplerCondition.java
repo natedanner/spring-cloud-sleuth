@@ -101,7 +101,7 @@ final class SamplerCondition extends AnyNestedCondition {
 			}
 			// bean name is set in Brave bridge configuration
 			boolean singleCompositeSpanHandler = spanHandlers.length == 1
-					&& spanHandlers[0].equals("traceCompositeSpanHandler");
+					&& "traceCompositeSpanHandler".equals(spanHandlers[0]);
 			return singleCompositeSpanHandler ? ConditionOutcome.noMatch("Composite handler found")
 					: ConditionOutcome.match("Composite handler not found");
 		}

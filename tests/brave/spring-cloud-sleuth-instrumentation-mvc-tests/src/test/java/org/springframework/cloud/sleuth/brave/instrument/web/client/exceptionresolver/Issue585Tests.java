@@ -96,11 +96,11 @@ class TestConfig {
 @RestController
 class TestController {
 
-	private final static Logger logger = LoggerFactory.getLogger(TestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
 	@RequestMapping(value = "sleuthtest", method = RequestMethod.GET)
 	public ResponseEntity<String> testSleuth(@RequestParam String greeting) {
-		if (greeting.equalsIgnoreCase("hello")) {
+		if ("hello".equalsIgnoreCase(greeting)) {
 			return new ResponseEntity<>("Hello World", HttpStatus.OK);
 		}
 		else {
@@ -113,7 +113,7 @@ class TestController {
 @ControllerAdvice
 class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-	private final static Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
 	@Autowired
 	private Tracing tracer;

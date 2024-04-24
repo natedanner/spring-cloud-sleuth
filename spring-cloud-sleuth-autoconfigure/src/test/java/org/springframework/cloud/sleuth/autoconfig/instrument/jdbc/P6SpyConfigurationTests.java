@@ -229,7 +229,7 @@ class P6SpyConfigurationTests {
 
 	static class GetCountingListener extends JdbcEventListener {
 
-		int connectionCount = 0;
+		int connectionCount;
 
 		@Override
 		public void onAfterGetConnection(ConnectionInformation connectionInformation, SQLException e) {
@@ -240,7 +240,7 @@ class P6SpyConfigurationTests {
 
 	static class ClosingCountingListener extends JdbcEventListener {
 
-		int connectionCount = 0;
+		int connectionCount;
 
 		@Override
 		public void onAfterConnectionClose(ConnectionInformation connectionInformation, SQLException e) {

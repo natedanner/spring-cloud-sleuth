@@ -62,9 +62,9 @@ class DataSourceDecoratorAutoConfigurationTests {
 			DataSource dataSource = context.getBean(DataSource.class);
 			assertThat(dataSource).isInstanceOf(DataSourceWrapper.class);
 
-			DataSourceWrapper DataSourceWrapper = (DataSourceWrapper) dataSource;
-			assertThat(DataSourceWrapper.getDecoratedDataSource()).isInstanceOf(P6DataSource.class);
-			P6DataSource p6DataSource = (P6DataSource) DataSourceWrapper.getDecoratedDataSource();
+			DataSourceWrapper dataSourceWrapper = (dataSourceWrapper) dataSource;
+			assertThat(dataSourceWrapper.getDecoratedDataSource()).isInstanceOf(P6DataSource.class);
+			P6DataSource p6DataSource = (P6DataSource) dataSourceWrapper.getDecoratedDataSource();
 
 			DataSource p6WrappedDataSource = (DataSource) ReflectionTestUtils.getField(p6DataSource, "realDataSource");
 			assertThat(p6WrappedDataSource).isInstanceOf(ProxyDataSource.class);
@@ -93,9 +93,9 @@ class DataSourceDecoratorAutoConfigurationTests {
 
 			assertThat(((DataSourceWrapper) dataSource).getOriginalDataSource()).isInstanceOf(HikariDataSource.class);
 
-			DataSourceWrapper DataSourceWrapper = (DataSourceWrapper) dataSource;
-			assertThat(DataSourceWrapper.getDecoratedDataSource()).isInstanceOf(P6DataSource.class);
-			P6DataSource p6DataSource = (P6DataSource) DataSourceWrapper.getDecoratedDataSource();
+			DataSourceWrapper dataSourceWrapper = (dataSourceWrapper) dataSource;
+			assertThat(dataSourceWrapper.getDecoratedDataSource()).isInstanceOf(P6DataSource.class);
+			P6DataSource p6DataSource = (P6DataSource) dataSourceWrapper.getDecoratedDataSource();
 
 			DataSource p6WrappedDataSource = (DataSource) ReflectionTestUtils.getField(p6DataSource, "realDataSource");
 			assertThat(p6WrappedDataSource).isInstanceOf(ProxyDataSource.class);
@@ -103,7 +103,7 @@ class DataSourceDecoratorAutoConfigurationTests {
 
 			DataSource dsProxyWrappedDataSource = (DataSource) ReflectionTestUtils.getField(proxyDataSource,
 					"dataSource");
-			assertThat(dsProxyWrappedDataSource).isEqualTo(DataSourceWrapper.getOriginalDataSource());
+			assertThat(dsProxyWrappedDataSource).isEqualTo(dataSourceWrapper.getOriginalDataSource());
 		});
 	}
 
@@ -165,10 +165,10 @@ class DataSourceDecoratorAutoConfigurationTests {
 
 			assertThat(dataSource).isInstanceOf(DataSourceWrapper.class);
 
-			DataSourceWrapper DataSourceWrapper = (DataSourceWrapper) dataSource;
+			DataSourceWrapper dataSourceWrapper = (dataSourceWrapper) dataSource;
 
-			assertThat(DataSourceWrapper.getDecoratedDataSource()).isInstanceOf(CustomDataSourceProxy.class);
-			CustomDataSourceProxy customDataSourceProxy = (CustomDataSourceProxy) DataSourceWrapper
+			assertThat(dataSourceWrapper.getDecoratedDataSource()).isInstanceOf(CustomDataSourceProxy.class);
+			CustomDataSourceProxy customDataSourceProxy = (CustomDataSourceProxy) dataSourceWrapper
 					.getDecoratedDataSource();
 
 			assertThat(customDataSourceProxy.delegate).isInstanceOf(P6DataSource.class);

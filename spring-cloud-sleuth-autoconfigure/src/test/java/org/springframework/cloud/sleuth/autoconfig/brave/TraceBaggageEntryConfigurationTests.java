@@ -59,13 +59,13 @@ public class TraceBaggageEntryConfigurationTests {
 	@Test
 	public void shouldCreateLocalFields() {
 		this.contextRunner.withPropertyValues("spring.sleuth.baggage.local-fields=bp")
-				.run((context) -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("bp", EMPTY_ARRAY)));
+				.run(context -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("bp", EMPTY_ARRAY)));
 	}
 
 	@Test
 	public void shouldCreateLocalFields_oldName() {
 		this.contextRunner.withPropertyValues("spring.sleuth.local-keys=bp")
-				.run((context) -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("bp", EMPTY_ARRAY)));
+				.run(context -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("bp", EMPTY_ARRAY)));
 	}
 
 	static ListAssert<Tuple> assertThatBaggageFieldNameToKeyNames(AssertableApplicationContext context) {
@@ -93,21 +93,21 @@ public class TraceBaggageEntryConfigurationTests {
 	@Test
 	public void shouldCreateDeprecatedBaggageFields() {
 		this.contextRunner.withPropertyValues("spring.sleuth.baggage-keys=country-code")
-				.run((context) -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("country-code",
+				.run(context -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("country-code",
 						new HashSet<>(Arrays.asList("baggage-country-code", "baggage_country-code")))));
 	}
 
 	@Test
 	public void canCreateDeprecatedBaggageFieldsWithJavaConfig() {
 		this.contextRunner.withUserConfiguration(CustomBaggageConfiguration.class)
-				.run((context) -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("country-code",
+				.run(context -> assertThatBaggageFieldNameToKeyNames(context).containsOnly(tuple("country-code",
 						new HashSet<>(Arrays.asList("baggage-country-code", "baggage_country-code")))));
 	}
 
 	@Test
 	public void shouldCreateTagHandler() {
 		this.contextRunner.withPropertyValues("spring.sleuth.baggage.tag-fields=x-vcap-request-id,country-code")
-				.run((context) -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
+				.run(context -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
 	}
 
 	@Test
@@ -115,14 +115,14 @@ public class TraceBaggageEntryConfigurationTests {
 		this.contextRunner
 				.withPropertyValues("spring.sleuth.baggage.tag-fields[0]=x-vcap-request-id",
 						"spring.sleuth.baggage.tag-fields[1]=country-code")
-				.run((context) -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
+				.run(context -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
 	}
 
 	@Test
 	public void shouldCreateTagHandler_oldProperty() {
 		this.contextRunner
 				.withPropertyValues("spring.sleuth.propagation.tag.whitelisted-keys=x-vcap-request-id,country-code")
-				.run((context) -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
+				.run(context -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
 	}
 
 	@Test
@@ -130,7 +130,7 @@ public class TraceBaggageEntryConfigurationTests {
 		this.contextRunner
 				.withPropertyValues("spring.sleuth.propagation.tag.whitelisted-keys[0]=x-vcap-request-id",
 						"spring.sleuth.propagation.tag.whitelisted-keys[1]=country-code")
-				.run((context) -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
+				.run(context -> assertThatFieldNamesToTag(context).containsOnly("x-vcap-request-id", "country-code"));
 	}
 
 	static AbstractListAssert<?, List<? extends String>, String, ObjectAssert<String>> assertThatFieldNamesToTag(
@@ -141,15 +141,14 @@ public class TraceBaggageEntryConfigurationTests {
 
 	@Test
 	public void noopOnNoTagFields() {
-		this.contextRunner.withPropertyValues("spring.sleuth.baggage.tag-fields=").run((context) -> {
-			assertThat(context.getBean("baggageTagSpanHandler", SpanHandler.class)).isSameAs(SpanHandler.NOOP);
-		});
+		this.contextRunner.withPropertyValues("spring.sleuth.baggage.tag-fields=").run(context ->
+			assertThat(context.getBean("baggageTagSpanHandler", SpanHandler.class)).isSameAs(SpanHandler.NOOP));
 	}
 
 	@Test
 	public void canAddOldCorrelationFieldsForLogScraping() {
 		this.contextRunner.withUserConfiguration(OldCorrelationFieldsForLogScrapingConfiguration.class)
-				.run((context) -> assertThat(context.getBean(CorrelationScopeDecorator.class)).extracting("fields")
+				.run(context -> assertThat(context.getBean(CorrelationScopeDecorator.class)).extracting("fields")
 						.asInstanceOf(array(SingleCorrelationField[].class)).extracting(SingleCorrelationField::name)
 						.containsExactly("traceId", "spanId", "parentId", "spanExportable"));
 	}
@@ -158,7 +157,7 @@ public class TraceBaggageEntryConfigurationTests {
 	public void canMakeAllCorrelationFieldsDirty() {
 		this.contextRunner.withPropertyValues("spring.sleuth.baggage.correlation-fields=country-code")
 				.withUserConfiguration(DirtyCorrelationFieldConfiguration.class)
-				.run((context) -> assertThat(context.getBean(CorrelationScopeDecorator.class)).extracting("fields")
+				.run(context -> assertThat(context.getBean(CorrelationScopeDecorator.class)).extracting("fields")
 						.asInstanceOf(array(SingleCorrelationField[].class)).filteredOn(c -> !c.readOnly())
 						.extracting(SingleCorrelationField::dirty).containsExactly(true));
 	}

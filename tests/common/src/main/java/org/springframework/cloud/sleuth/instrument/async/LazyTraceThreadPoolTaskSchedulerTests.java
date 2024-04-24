@@ -86,7 +86,7 @@ public abstract class LazyTraceThreadPoolTaskSchedulerTests implements TestTraci
 
 	@Test
 	public void setErrorHandler() {
-		ErrorHandler handler = (throwable) -> {
+		ErrorHandler handler = throwable -> {
 		};
 		this.executor.setErrorHandler(handler);
 

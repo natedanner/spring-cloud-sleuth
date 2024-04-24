@@ -58,7 +58,7 @@ public abstract class HttpClientBeanPostProcessorTest {
 	}
 
 	@Test
-	void mapConnect_should_setup_reactor_context_currentTraceContext() {
+	void mapConnectShouldSetupReactorContextCurrentTraceContext() {
 		TracingMapConnect tracingMapConnect = new TracingMapConnect(() -> traceContext);
 		AtomicBoolean assertionPassed = new AtomicBoolean();
 
@@ -83,7 +83,7 @@ public abstract class HttpClientBeanPostProcessorTest {
 	}
 
 	@Test
-	void mapConnect_should_setup_reactor_context_no_currentTraceContext() {
+	void mapConnectShouldSetupReactorContextNoCurrentTraceContext() {
 		TracingMapConnect tracingMapConnect = new TracingMapConnect(() -> null);
 		AtomicBoolean assertionPassed = new AtomicBoolean();
 

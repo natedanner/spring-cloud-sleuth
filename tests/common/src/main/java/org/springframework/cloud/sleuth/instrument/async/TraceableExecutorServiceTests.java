@@ -54,7 +54,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 @ExtendWith(MockitoExtension.class)
 public abstract class TraceableExecutorServiceTests implements TestTracingAwareSupplier {
 
-	private static int TOTAL_THREADS = 10;
+	private static int totalThreads = 10;
 
 	@Mock(lenient = true)
 	BeanFactory beanFactory;
@@ -94,7 +94,7 @@ public abstract class TraceableExecutorServiceTests implements TestTracingAwareS
 		}
 
 		then(this.spanVerifyingRunnable.traceIds.stream().distinct().collect(toList())).hasSize(1);
-		then(this.spanVerifyingRunnable.spanIds.stream().distinct().collect(toList())).hasSize(TOTAL_THREADS);
+		then(this.spanVerifyingRunnable.spanIds.stream().distinct().collect(toList())).hasSize(totalThreads);
 	}
 
 	@Test
@@ -171,10 +171,9 @@ public abstract class TraceableExecutorServiceTests implements TestTracingAwareS
 		ExecutorService executorService = this.executorService;
 		BeanFactory beanFactory = beanFactory(true);
 		// tag::completablefuture[]
-		CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() -> {
+		CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() ->
 			// perform some logic
-			return 1_000_000L;
-		}, new TraceableExecutorService(beanFactory, executorService,
+			1_000_000L, new TraceableExecutorService(beanFactory, executorService,
 				// 'calculateTax' explicitly names the span - this param is optional
 				"calculateTax"));
 		// end::completablefuture[]
@@ -201,10 +200,9 @@ public abstract class TraceableExecutorServiceTests implements TestTracingAwareS
 			throws Exception {
 		ExecutorService executorService = this.executorService;
 		BeanFactory beanFactory = beanFactory(false);
-		CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() -> {
+		CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() ->
 			// perform some logic
-			return 1_000_000L;
-		}, new TraceableExecutorService(beanFactory, executorService, "calculateTax"));
+			1_000_000L, new TraceableExecutorService(beanFactory, executorService, "calculateTax"));
 
 		then(completableFuture.get()).isEqualTo(1_000_000L);
 		then(this.tracer.currentSpan()).isNull();
@@ -212,7 +210,7 @@ public abstract class TraceableExecutorServiceTests implements TestTracingAwareS
 
 	private CompletableFuture<?>[] runnablesExecutedViaTraceManagerableExecutorService() {
 		List<CompletableFuture<?>> futures = new ArrayList<>();
-		for (int i = 0; i < TOTAL_THREADS; i++) {
+		for (int i = 0; i < totalThreads; i++) {
 			futures.add(CompletableFuture.runAsync(this.spanVerifyingRunnable, this.traceManagerableExecutorService));
 		}
 		return futures.toArray(new CompletableFuture[futures.size()]);

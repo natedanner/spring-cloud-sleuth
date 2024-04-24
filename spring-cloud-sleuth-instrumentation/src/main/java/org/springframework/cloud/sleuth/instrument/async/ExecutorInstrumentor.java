@@ -338,7 +338,7 @@ class ExecutorMethodInterceptor<T extends Executor> implements MethodInterceptor
 			catch (InvocationTargetException ex) {
 				// gh-1092: throw the target exception (if present)
 				Throwable cause = ex.getCause();
-				throw (cause != null) ? cause : ex;
+				throw cause != null ? cause : ex;
 			}
 		}
 		return invocation.proceed();

@@ -155,9 +155,8 @@ public class BraveWebClientAutoConfigurationTests {
 		// custom customizer
 		@Bean
 		RestTemplateCustomizer myRestTemplateCustomizer() {
-			return restTemplate -> {
+			return restTemplate ->
 				restTemplate.getInterceptors().add(0, new MySecondClientHttpRequestInterceptor());
-			};
 		}
 
 	}

@@ -58,7 +58,7 @@ public class DefaultEndpointLocator implements EndpointLocator, ApplicationListe
 
 	private Integer port;
 
-	private InetAddress firstNonLoopbackAddress;
+	private final InetAddress firstNonLoopbackAddress;
 
 	public DefaultEndpointLocator(Registration registration, ServerProperties serverProperties, Environment environment,
 			ZipkinProperties zipkinProperties, InetUtils inetUtils) {

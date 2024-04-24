@@ -30,7 +30,7 @@ public class SleuthProperties {
 	private boolean enabled = true;
 
 	/** When true, generate 128-bit trace IDs instead of 64-bit ones. */
-	private boolean traceId128 = false;
+	private boolean traceId128;
 
 	/**
 	 * True means the tracing system supports sharing a span ID between a client and

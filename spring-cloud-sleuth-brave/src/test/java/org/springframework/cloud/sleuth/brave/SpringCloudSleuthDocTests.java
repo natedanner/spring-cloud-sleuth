@@ -215,7 +215,7 @@ public class SpringCloudSleuthDocTests {
 		}).get();
 
 		Optional<MutableSpan> calculateTax = spans.spans().stream()
-				.filter(span -> span.name().equals("calculateCommission")).findFirst();
+				.filter(span -> "calculateCommission".equals(span.name())).findFirst();
 		BDDAssertions.then(calculateTax).isPresent();
 		BDDAssertions.then(calculateTax.get().tags()).containsEntry("commissionValue", "10");
 		BDDAssertions.then(calculateTax.get().annotations()).hasSize(1);
@@ -244,7 +244,7 @@ public class SpringCloudSleuthDocTests {
 
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 		executorService.submit(traceRunnable).get(100, TimeUnit.MILLISECONDS);
-		Optional<MutableSpan> calculateTax = spans.spans().stream().filter(span -> span.name().equals("calculateTax"))
+		Optional<MutableSpan> calculateTax = spans.spans().stream().filter(span -> "calculateTax".equals(span.name()))
 				.findFirst();
 		BDDAssertions.then(calculateTax).isPresent();
 		executorService.shutdown();
@@ -273,7 +273,7 @@ public class SpringCloudSleuthDocTests {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 		String result = executorService.submit(traceCallable).get(100, TimeUnit.MILLISECONDS);
 		BDDAssertions.then(result).isEqualTo("some logic");
-		Optional<MutableSpan> calculateTax = spans.spans().stream().filter(span -> span.name().equals("calculateTax"))
+		Optional<MutableSpan> calculateTax = spans.spans().stream().filter(span -> "calculateTax".equals(span.name()))
 				.findFirst();
 		BDDAssertions.then(calculateTax).isPresent();
 		executorService.shutdown();

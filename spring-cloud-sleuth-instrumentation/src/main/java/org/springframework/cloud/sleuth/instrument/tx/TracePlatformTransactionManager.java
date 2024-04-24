@@ -68,7 +68,7 @@ public class TracePlatformTransactionManager implements PlatformTransactionManag
 		Span currentSpan = spanAndScope != null ? spanAndScope.getSpan() : tracer().currentSpan();
 		Span span = fallbackSpan();
 		try {
-			TransactionDefinition def = (definition != null ? definition : TransactionDefinition.withDefaults());
+			TransactionDefinition def = definition != null ? definition : TransactionDefinition.withDefaults();
 			TransactionStatus status = this.delegate.getTransaction(definition);
 			taggedSpan(currentSpan, span, def, status);
 			return status;

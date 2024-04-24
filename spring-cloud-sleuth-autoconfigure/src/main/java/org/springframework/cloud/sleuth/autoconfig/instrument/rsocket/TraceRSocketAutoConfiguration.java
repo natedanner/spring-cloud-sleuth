@@ -68,7 +68,7 @@ public class TraceRSocketAutoConfiguration {
 	}
 
 	private boolean containsZipkinPropagationType(List<String> types) {
-		return types.stream().anyMatch(s -> s.equalsIgnoreCase("b3"));
+		return types.stream().anyMatch("b3"::equalsIgnoreCase);
 	}
 
 	@Bean

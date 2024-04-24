@@ -67,7 +67,7 @@ class WebClientSenderTests extends AbstractSenderTest {
 
 	@Test
 	void customFunctionToResumeAfterError() throws IOException {
-		WebClientSender sender = new WebClientSender((response) -> response.onErrorResume((error) -> Mono.empty()),
+		WebClientSender sender = new WebClientSender(response -> response.onErrorResume(error -> Mono.empty()),
 				WebClient.builder().clientConnector(new ReactorClientHttpConnector()).build(), this.endpoint, "",
 				PROTO3, DEFAULT_CHECK_TIMEOUT);
 

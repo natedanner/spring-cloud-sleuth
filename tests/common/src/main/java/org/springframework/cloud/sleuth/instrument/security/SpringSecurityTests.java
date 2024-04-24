@@ -66,7 +66,7 @@ public abstract class SpringSecurityTests {
 	}
 
 	@Test
-	void authenticated_user_should_trigger_events() {
+	void authenticatedUserShouldTriggerEvents() {
 		ResponseEntity<String> entity = restTemplate.withBasicAuth("user", "password").getForEntity("/", String.class);
 
 		then(entity.getStatusCode().is2xxSuccessful()).isTrue();
@@ -84,7 +84,7 @@ public abstract class SpringSecurityTests {
 	}
 
 	@Test
-	void anonymous_user_should_trigger_events() {
+	void anonymousUserShouldTriggerEvents() {
 		ResponseEntity<String> entity = restTemplate.getForEntity("/", String.class);
 
 		then(entity.getStatusCode().is2xxSuccessful()).isTrue();

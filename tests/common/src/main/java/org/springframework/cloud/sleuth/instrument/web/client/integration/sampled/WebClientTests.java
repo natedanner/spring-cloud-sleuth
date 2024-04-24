@@ -168,29 +168,29 @@ public abstract class WebClientTests {
 	}
 
 	static Stream parametersForShouldCreateANewSpanWithClientSideTagsWhenNoPreviousTracingWasPresent() {
-		return Stream.of((ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterface.getNoTrace(),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+		return Stream.of((ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.testFeignInterface.getNoTrace(),
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/notrace",
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/notrace",
 						String.class));
 	}
 
@@ -268,7 +268,7 @@ public abstract class WebClientTests {
 		}
 
 		thenThereIsNoCurrentSpan();
-		then(this.spans.reportedSpans().stream().filter(r -> r.getKind() == Span.Kind.CLIENT).map(r -> r.getName())
+		then(this.spans.reportedSpans().stream().filter(r -> r.getKind() == Span.Kind.CLIENT).map(FinishedSpan::getName)
 				.collect(Collectors.toList())).isNotEmpty().contains(templatedName());
 	}
 
@@ -306,8 +306,8 @@ public abstract class WebClientTests {
 	}
 
 	static Stream parametersForShouldAttachTraceIdWhenCallingAnotherService() {
-		return Stream.of((ResponseEntityProvider) (tests) -> tests.testFeignInterface.headers(),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/traceid",
+		return Stream.of((ResponseEntityProvider) tests -> tests.testFeignInterface.headers(),
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/traceid",
 						String.class));
 	}
 
@@ -328,8 +328,8 @@ public abstract class WebClientTests {
 	}
 
 	static Stream parametersForShouldAttachTraceIdWhenUsingFeignClientWithoutResponseBody() {
-		return Stream.of((ResponseEntityProvider) (tests) -> tests.testFeignInterface.noResponseBody(),
-				(ResponseEntityProvider) (tests) -> tests.template.getForEntity("http://fooservice/noresponse",
+		return Stream.of((ResponseEntityProvider) tests -> tests.testFeignInterface.noResponseBody(),
+				(ResponseEntityProvider) tests -> tests.template.getForEntity("http://fooservice/noresponse",
 						String.class));
 	}
 
@@ -584,7 +584,7 @@ public abstract class WebClientTests {
 	public static class SimpleLoadBalancerClientConfiguration {
 
 		@Value("${local.server.port}")
-		private int port = 0;
+		private int port;
 
 		@Bean
 		public ServiceInstanceListSupplier serviceInstanceListSupplier() {

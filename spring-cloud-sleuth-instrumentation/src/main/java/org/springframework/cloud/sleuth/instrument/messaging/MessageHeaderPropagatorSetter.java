@@ -123,7 +123,7 @@ public class MessageHeaderPropagatorSetter implements Propagator.Setter<MessageH
 	}
 
 	private Map<String, List<String>> toNativeHeaderMap(Map<String, List<String>> map) {
-		return (map != null ? new LinkedMultiValueMap<>(map) : Collections.emptyMap());
+		return map != null ? new LinkedMultiValueMap<>(map) : Collections.emptyMap();
 	}
 
 	@Override

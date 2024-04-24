@@ -62,7 +62,7 @@ public class LazyBeanTests {
 
 		LazyBean<CurrentTraceContext> provider = LazyBean.create(context, CurrentTraceContext.class);
 
-		assertThatCode(() -> provider.getOrError()).isInstanceOf(NoSuchBeanDefinitionException.class);
+		assertThatCode(provider::getOrError).isInstanceOf(NoSuchBeanDefinitionException.class);
 	}
 
 	@Configuration(proxyBeanMethods = false)

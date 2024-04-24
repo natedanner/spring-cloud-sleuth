@@ -141,9 +141,8 @@ public abstract class MultipleAsyncRestTemplateTests {
 			span.end();
 		}
 
-		Awaitility.await().atMost(10L, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(10L, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 		BDDAssertions.then(this.tracer.currentSpan()).isNull();
 	}
 
@@ -158,15 +157,13 @@ public abstract class MultipleAsyncRestTemplateTests {
 		}
 
 		private ClientHttpRequestFactory clientHttpRequestFactory() {
-			ClientHttpRequestFactory clientHttpRequestFactory = new CustomClientHttpRequestFactory();
 			// CUSTOMIZE HERE
-			return clientHttpRequestFactory;
+			return new CustomClientHttpRequestFactory();
 		}
 
 		private AsyncClientHttpRequestFactory asyncClientFactory() {
-			AsyncClientHttpRequestFactory factory = new CustomAsyncClientHttpRequestFactory();
 			// CUSTOMIZE HERE
-			return factory;
+			return new CustomAsyncClientHttpRequestFactory();
 		}
 
 	}

@@ -97,7 +97,7 @@ public class BraveMessagingAutoConfigurationTests {
 
 	@Test
 	public void defaultsToBraveProducerSampler() {
-		contextRunner().run((context) -> {
+		contextRunner().run(context -> {
 			SamplerFunction<MessagingRequest> producerSampler = context.getBean(MessagingTracing.class)
 					.producerSampler();
 
@@ -107,7 +107,7 @@ public class BraveMessagingAutoConfigurationTests {
 
 	@Test
 	public void configuresUserProvidedProducerSampler() {
-		contextRunner().withUserConfiguration(ProducerSamplerConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(ProducerSamplerConfig.class).run(context -> {
 			SamplerFunction<MessagingRequest> producerSampler = context.getBean(MessagingTracing.class)
 					.producerSampler();
 
@@ -117,7 +117,7 @@ public class BraveMessagingAutoConfigurationTests {
 
 	@Test
 	public void defaultsToBraveConsumerSampler() {
-		contextRunner().run((context) -> {
+		contextRunner().run(context -> {
 			SamplerFunction<MessagingRequest> consumerSampler = context.getBean(MessagingTracing.class)
 					.consumerSampler();
 
@@ -127,7 +127,7 @@ public class BraveMessagingAutoConfigurationTests {
 
 	@Test
 	public void configuresUserProvidedConsumerSampler() {
-		contextRunner().withUserConfiguration(ConsumerSamplerConfig.class).run((context) -> {
+		contextRunner().withUserConfiguration(ConsumerSamplerConfig.class).run(context -> {
 			SamplerFunction<MessagingRequest> consumerSampler = context.getBean(MessagingTracing.class)
 					.consumerSampler();
 
@@ -180,7 +180,7 @@ public class BraveMessagingAutoConfigurationTests {
 
 class TestSleuthRabbitBeanPostProcessor extends SleuthRabbitBeanPostProcessor {
 
-	boolean rabbitTracingCalled = false;
+	boolean rabbitTracingCalled;
 
 	TestSleuthRabbitBeanPostProcessor(BeanFactory beanFactory) {
 		super(beanFactory);
@@ -212,7 +212,7 @@ class MySleuthKafkaAspect extends SleuthKafkaAspect {
 
 class TestSleuthJmsBeanPostProcessor extends TracingConnectionFactoryBeanPostProcessor {
 
-	boolean tracingCalled = false;
+	boolean tracingCalled;
 
 	TestSleuthJmsBeanPostProcessor(BeanFactory beanFactory) {
 		super(beanFactory);

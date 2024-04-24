@@ -35,7 +35,7 @@ class RestTemplateInterceptorInjector {
 		if (hasTraceInterceptor(restTemplate)) {
 			return;
 		}
-		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>(
+		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>(
 				restTemplate.getInterceptors());
 		interceptors.add(0, this.interceptor);
 		restTemplate.setInterceptors(interceptors);

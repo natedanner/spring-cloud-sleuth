@@ -184,10 +184,10 @@ class SkipPatternConfiguration {
 			if (StringUtils.hasText(contextPath)) {
 				result += contextPath;
 			}
-			if (!actuatorBasePath.equals("/")) {
+			if (!"/".equals(actuatorBasePath)) {
 				result += actuatorBasePath;
 			}
-			boolean ignoreBase = StringUtils.hasText(result) && !result.equals("/");
+			boolean ignoreBase = StringUtils.hasText(result) && !"/".equals(result);
 			String suffix = "/(";
 			if (ignoreBase) {
 				suffix = "(/|" + suffix;

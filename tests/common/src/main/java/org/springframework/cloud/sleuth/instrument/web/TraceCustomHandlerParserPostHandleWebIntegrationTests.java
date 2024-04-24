@@ -67,7 +67,7 @@ public abstract class TraceCustomHandlerParserPostHandleWebIntegrationTests {
 	int port;
 
 	@Test
-	void should_tag_payload() {
+	void shouldTagPayload() {
 		new RestTemplate().postForEntity("http://localhost:" + this.port + "/user", new UserController.User("WuWen"),
 				UserController.User.class);
 

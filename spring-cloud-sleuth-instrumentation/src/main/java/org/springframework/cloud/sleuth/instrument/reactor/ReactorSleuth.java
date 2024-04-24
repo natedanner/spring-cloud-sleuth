@@ -633,8 +633,8 @@ public abstract class ReactorSleuth {
 	@SuppressWarnings("unchecked")
 	public static AtomicReference<Span> getPendingSpan(ContextView context) {
 		Object objectSpan = context.getOrDefault(ReactorSleuth.PENDING_SPAN_KEY, null);
-		if ((objectSpan instanceof AtomicReference)) {
-			return ((AtomicReference<Span>) objectSpan);
+		if (objectSpan instanceof AtomicReference) {
+			return (AtomicReference<Span>) objectSpan;
 		}
 		return null;
 	}
@@ -758,7 +758,7 @@ public abstract class ReactorSleuth {
 				if (peek instanceof Envelope) {
 					Envelope envelope = (Envelope) peek;
 					restoreTheContext(envelope);
-					return (envelope).body;
+					return envelope.body;
 				}
 				return peek;
 			}
@@ -779,7 +779,7 @@ public abstract class ReactorSleuth {
 						if (next instanceof Envelope) {
 							Envelope envelope = (Envelope) next;
 							restoreTheContext(envelope);
-							return (envelope).body;
+							return envelope.body;
 						}
 						return next;
 					}

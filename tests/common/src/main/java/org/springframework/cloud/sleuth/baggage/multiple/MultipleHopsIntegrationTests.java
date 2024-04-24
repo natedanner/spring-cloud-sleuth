@@ -90,9 +90,8 @@ public abstract class MultipleHopsIntegrationTests {
 	public void should_prepare_spans_for_export() {
 		this.restTemplate.getForObject("http://localhost:" + this.testConfig.port + "/greeting", String.class);
 
-		await().atMost(5, SECONDS).untilAsserted(() -> {
-			then(this.spans).hasSize(14);
-		});
+		await().atMost(5, SECONDS).untilAsserted(() ->
+			then(this.spans).hasSize(14));
 		assertSpanNames();
 		then(this.spans).extracting(FinishedSpan::getKind)
 				// no server kind due to test constraints
@@ -136,9 +135,8 @@ public abstract class MultipleHopsIntegrationTests {
 			initialSpan.end();
 		}
 
-		await().atMost(5, SECONDS).untilAsserted(() -> {
-			then(this.spans).isNotEmpty();
-		});
+		await().atMost(5, SECONDS).untilAsserted(() ->
+			then(this.spans).isNotEmpty());
 
 		List<FinishedSpan> withBagTags = this.spans.reportedSpans().stream()
 				.filter(s -> s.getTags().containsKey(BUSINESS_PROCESS)).collect(toList());

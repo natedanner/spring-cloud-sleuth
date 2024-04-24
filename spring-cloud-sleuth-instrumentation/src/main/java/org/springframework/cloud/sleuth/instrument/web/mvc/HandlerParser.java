@@ -71,7 +71,7 @@ public class HandlerParser {
 	protected void preHandle(HttpServletRequest request, Object handler, SpanCustomizer customizer) {
 		AssertingSpanCustomizer span = SleuthMvcSpan.MVC_HANDLER_INTERCEPTOR_SPAN.wrap(customizer);
 		if (WebMvcRuntime.get().isHandlerMethod(handler)) {
-			HandlerMethod handlerMethod = ((HandlerMethod) handler);
+			HandlerMethod handlerMethod = (HandlerMethod) handler;
 			span.tag(SleuthMvcSpan.Tags.CLASS, handlerMethod.getBeanType().getSimpleName());
 			span.tag(SleuthMvcSpan.Tags.METHOD, handlerMethod.getMethod().getName());
 		}

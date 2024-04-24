@@ -78,9 +78,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -126,9 +125,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -143,9 +141,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -175,9 +172,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -192,9 +188,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -209,9 +204,8 @@ public abstract class TraceThreadPoolTaskExecutorTests implements TestTracingAwa
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			BDDAssertions.then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			BDDAssertions.then(executed.get()).isTrue());
 	}
 
 	Runnable aRunnable(AtomicBoolean executed, Span currentSpan) {

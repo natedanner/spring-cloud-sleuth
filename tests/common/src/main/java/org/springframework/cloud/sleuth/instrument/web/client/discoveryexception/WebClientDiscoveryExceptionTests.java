@@ -99,12 +99,12 @@ public abstract class WebClientDiscoveryExceptionTests {
 	@Test
 	public void testFeignInterfaceWithException() throws Exception {
 		shouldCloseSpanUponException(
-				(ResponseEntityProvider) (tests) -> tests.testFeignInterfaceWithException.shouldFailToConnect());
+				(ResponseEntityProvider) tests -> tests.testFeignInterfaceWithException.shouldFailToConnect());
 	}
 
 	@Test
 	public void testTemplate() throws Exception {
-		shouldCloseSpanUponException((ResponseEntityProvider) (tests) -> tests.template
+		shouldCloseSpanUponException((ResponseEntityProvider) tests -> tests.template
 				.getForEntity("https://exceptionservice/", Map.class));
 	}
 

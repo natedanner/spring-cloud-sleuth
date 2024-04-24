@@ -55,7 +55,7 @@ public class Issue866Configuration {
 		/**
 		 * Whether the hook was called.
 		 */
-		public boolean executed = false;
+		public boolean executed;
 
 		public TestHook() {
 			super();

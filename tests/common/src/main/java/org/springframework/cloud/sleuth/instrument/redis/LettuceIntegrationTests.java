@@ -45,7 +45,7 @@ public abstract class LettuceIntegrationTests {
 	Tracing tracing;
 
 	@Test
-	void tracing_should_be_set() {
+	void tracingShouldBeSet() {
 		then(this.clientResources).isNull();
 		then(this.customizer).isNotNull();
 		then(this.tracing.isEnabled()).isTrue();

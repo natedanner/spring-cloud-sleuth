@@ -108,11 +108,10 @@ public class SkipPatternProviderConfigTest {
 						UserConfigurations.of(ManagementContextAutoConfiguration.class, ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.server.base-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
 							"/actuator(/|/(health|health/.*|info|info/.*))?", "/foo.*",
-							SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -122,11 +121,10 @@ public class SkipPatternProviderConfigTest {
 						UserConfigurations.of(ManagementContextAutoConfiguration.class, ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.server.base-path=${test:value}")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
 							"/actuator(/|/(health|health/.*|info|info/.*))?", "/value.*",
-							SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -142,10 +140,9 @@ public class SkipPatternProviderConfigTest {
 	@Test
 	public void should_return_endpoints_without_context_path() {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
-				.withPropertyValues("management.endpoints.web.exposure.include=health,info").run(context -> {
+				.withPropertyValues("management.endpoints.web.exposure.include=health,info").run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -153,11 +150,10 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
 							"foo/actuator(/|/(health|health/.*|info|info/.*))?",
-							SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -165,11 +161,10 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"server.servlet.context-path=${test:foo}")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
 							"foo/actuator(/|/(health|health/.*|info|info/.*))?",
-							SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -177,10 +172,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -188,10 +182,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=${test:/}")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -199,10 +192,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/", "server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"foo(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"foo(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -210,10 +202,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=${test:/}", "server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"foo(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"foo(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -222,10 +213,9 @@ public class SkipPatternProviderConfigTest {
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/", "management.server.port=0",
 						"server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -236,11 +226,10 @@ public class SkipPatternProviderConfigTest {
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.server.base-path=/foo", "management.endpoints.web.base-path=/actuator",
 						"management.server.port=0")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
 							"/foo/actuator(/|/(health|health/.*|info|info/.*))?", "/foo.*",
-							SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -249,10 +238,9 @@ public class SkipPatternProviderConfigTest {
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/", "management.server.port=${some-port:0}",
 						"server.servlet.context-path=${some-path:foo}")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/(health|health/.*|info|info/.*)", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -260,10 +248,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/mgt", "server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"foo/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"foo/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -271,10 +258,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/${test:mgt}", "server.servlet.context-path=${test2:foo}")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"foo/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"foo/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -282,10 +268,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info", "management.server.port=0",
 						"server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -294,10 +279,9 @@ public class SkipPatternProviderConfigTest {
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info",
 						"management.endpoints.web.base-path=/mgt", "management.server.port=0",
 						"server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/mgt(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test
@@ -305,10 +289,9 @@ public class SkipPatternProviderConfigTest {
 		contextRunner.withConfiguration(UserConfigurations.of(ServerPropertiesConfig.class))
 				.withPropertyValues("management.endpoints.web.exposure.include=health,info", "management.server.port=0",
 						"server.servlet.context-path=foo")
-				.run(context -> {
+				.run(context ->
 					BDDAssertions.then(extractAllPatterns(context)).containsExactlyInAnyOrder(
-							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN);
-				});
+							"/actuator(/|/(health|health/.*|info|info/.*))?", SleuthWebProperties.DEFAULT_SKIP_PATTERN));
 	}
 
 	@Test

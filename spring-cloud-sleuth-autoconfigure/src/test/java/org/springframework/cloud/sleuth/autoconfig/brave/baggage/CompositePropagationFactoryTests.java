@@ -69,7 +69,7 @@ class TracingResource {
 
 	@GetMapping("spanId")
 	public Mono<String> spanId() {
-		return Mono.deferContextual(view -> traceContext(view)).map(c -> c.spanId());
+		return Mono.deferContextual(this::traceContext).map(TraceContext::spanId);
 
 	}
 

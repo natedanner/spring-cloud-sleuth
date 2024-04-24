@@ -69,7 +69,7 @@ abstract class AbstractTransactionManagerInstrumenter<T extends TransactionManag
 	}
 
 	boolean isApplicableForInstrumentation(Object bean) {
-		return isNotYetTraced(bean) && !(tracedClass().isAssignableFrom(bean.getClass()));
+		return isNotYetTraced(bean) && !tracedClass().isAssignableFrom(bean.getClass());
 	}
 
 	private boolean isNotYetTraced(Object bean) {
@@ -143,7 +143,7 @@ abstract class AbstractTransactionManagerInstrumenter<T extends TransactionManag
 				}
 				catch (InvocationTargetException ex) {
 					Throwable cause = ex.getCause();
-					throw (cause != null) ? cause : ex;
+					throw cause != null ? cause : ex;
 				}
 			}
 			return invocation.proceed();

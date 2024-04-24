@@ -48,7 +48,7 @@ public class BraveAutoConfigurationCustomizersTests {
 
 	@Test
 	public void should_apply_customizers() {
-		this.contextRunner.withPropertyValues("spring.sleuth.baggage.remote-fields=country-code").run((context) -> {
+		this.contextRunner.withPropertyValues("spring.sleuth.baggage.remote-fields=country-code").run(context -> {
 			Customizers bean = context.getBean(Customizers.class);
 
 			shouldApplyCustomizations(bean);
@@ -58,7 +58,7 @@ public class BraveAutoConfigurationCustomizersTests {
 
 	@Test
 	public void should_apply_baggage_customizer_when_no_baggage_properties_are_defined() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			Customizers bean = context.getBean(Customizers.class);
 
 			shouldApplyCustomizations(bean);

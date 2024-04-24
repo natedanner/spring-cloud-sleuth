@@ -57,9 +57,8 @@ class SleuthP6SpyListenerAutoConfigurationTests {
 	void testDoesNotAddP6SpyListenerIfNoTracer() {
 		ApplicationContextRunner contextRunner = this.contextRunner.withPropertyValues("spring.sleuth.enabled=false");
 
-		contextRunner.run(context -> {
-			assertThat(context).doesNotHaveBean(JdbcEventListenerFactory.class);
-		});
+		contextRunner.run(context ->
+			assertThat(context).doesNotHaveBean(JdbcEventListenerFactory.class));
 	}
 
 }

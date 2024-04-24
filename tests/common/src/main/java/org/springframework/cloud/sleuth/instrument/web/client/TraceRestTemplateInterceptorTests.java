@@ -51,11 +51,11 @@ import static org.assertj.core.api.BDDAssertions.then;
  */
 public abstract class TraceRestTemplateInterceptorTests implements TestTracingAwareSupplier {
 
-	private TestController testController = new TestController();
+	private final TestController testController = new TestController();
 
-	private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(this.testController).build();
+	private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(this.testController).build();
 
-	private RestTemplate template = new RestTemplate(new MockMvcClientHttpRequestFactory(this.mockMvc));
+	private final RestTemplate template = new RestTemplate(new MockMvcClientHttpRequestFactory(this.mockMvc));
 
 	Tracer tracer = tracerTest().tracing().tracer();
 

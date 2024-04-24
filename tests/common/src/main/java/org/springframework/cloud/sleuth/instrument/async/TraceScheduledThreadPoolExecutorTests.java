@@ -103,9 +103,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -122,9 +121,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(fromCallable.get(10, TimeUnit.MILLISECONDS)).isNotNull();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(fromCallable.get(10, TimeUnit.MILLISECONDS)).isNotNull());
 	}
 
 	private RunnableScheduledFuture<Span> runnableScheduledFuture(Callable<Span> run) {
@@ -264,9 +262,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -282,9 +279,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -299,9 +295,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	@Test
@@ -331,9 +326,8 @@ public abstract class TraceScheduledThreadPoolExecutorTests implements TestTraci
 			span.end();
 		}
 
-		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() -> {
-			then(executed.get()).isTrue();
-		});
+		Awaitility.await().atMost(5, TimeUnit.SECONDS).untilAsserted(() ->
+			then(executed.get()).isTrue());
 	}
 
 	Runnable aRunnable(AtomicBoolean executed, Span currentSpan) {

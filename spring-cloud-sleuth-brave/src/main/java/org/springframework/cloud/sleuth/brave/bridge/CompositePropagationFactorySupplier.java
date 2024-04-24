@@ -100,10 +100,9 @@ class CompositePropagationFactory extends Propagation.Factory implements Propaga
 
 	@Override
 	public <R> TraceContext.Injector<R> injector(Setter<R, String> setter) {
-		return (traceContext, request) -> {
+		return (traceContext, request) ->
 			this.types.stream().map(this.mapping::get)
 					.forEach(p -> p.getValue().injector(setter).inject(traceContext, request));
-		};
 	}
 
 	@Override

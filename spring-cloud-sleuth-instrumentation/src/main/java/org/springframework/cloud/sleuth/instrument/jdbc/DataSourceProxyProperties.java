@@ -58,7 +58,7 @@ public class DataSourceProxyProperties {
 	 *
 	 * @see ProxyDataSourceBuilder#asJson()
 	 */
-	private boolean jsonFormat = false;
+	private boolean jsonFormat;
 
 	public DataSourceProxyLogging getLogging() {
 		return logging;
@@ -113,7 +113,7 @@ public class DataSourceProxyProperties {
 		/**
 		 * Enable logging all queries to the log.
 		 */
-		private boolean enableLogging = false;
+		private boolean enableLogging;
 
 		/**
 		 * Name of query logger.
@@ -164,7 +164,7 @@ public class DataSourceProxyProperties {
 		/**
 		 * Enable logging slow queries to the log.
 		 */
-		private boolean enableLogging = false;
+		private boolean enableLogging;
 
 		/**
 		 * Name of slow query logger.

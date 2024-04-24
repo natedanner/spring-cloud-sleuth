@@ -87,7 +87,7 @@ public class WebClientSender extends HttpSender {
 			Function<Mono<ResponseEntity<Void>>, Mono<ResponseEntity<Void>>> wrapperFunction, String url,
 			MediaType mediaType, byte[] json, WebClient webClient, long checkTimeout) {
 		if (wrapperFunction == null) {
-			wrapperFunction = (response) -> response;
+			wrapperFunction = response -> response;
 		}
 
 		return wrapperFunction.apply(webClient.post().uri(URI.create(url)).accept(mediaType).contentType(mediaType)

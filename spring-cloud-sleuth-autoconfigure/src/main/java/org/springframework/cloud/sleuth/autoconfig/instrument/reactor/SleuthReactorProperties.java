@@ -113,7 +113,7 @@ public class SleuthReactorProperties {
 		/**
 		 * Does not automatically wrap any operators.
 		 */
-		MANUAL;
+		MANUAL
 
 	}
 

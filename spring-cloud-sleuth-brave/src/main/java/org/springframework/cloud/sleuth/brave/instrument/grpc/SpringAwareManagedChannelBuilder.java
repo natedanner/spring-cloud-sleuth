@@ -39,7 +39,7 @@ import io.grpc.inprocess.InProcessChannelBuilder;
 // TODO: research why we need to continue to maintain this given current libraries
 public class SpringAwareManagedChannelBuilder {
 
-	private List<GrpcManagedChannelBuilderCustomizer> customizers;
+	private final List<GrpcManagedChannelBuilderCustomizer> customizers;
 
 	public SpringAwareManagedChannelBuilder(Optional<List<GrpcManagedChannelBuilderCustomizer>> customizers) {
 		this.customizers = customizers.orElse(null);
